@@ -1,0 +1,162 @@
+package com.yixing.model;
+
+import com.google.gson.annotations.SerializedName;
+import com.yixing.utils.android.QuickSetParcelableUtil;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MyInvestBidModel extends BaseModel implements Parcelable{
+
+	@SerializedName("FINANCE_PRODUCTS_NAME")
+	private String loanFlg;// 贷款类型 小图片
+
+	@SerializedName("PRODUCTS_TITLE")
+	private String title;// 标题
+	
+	@SerializedName("TENDER_AMOUNT_FORMAT")
+	private String financingAmount;// 融资金额
+	
+	@SerializedName("RECOVER_AMOUNT_INTEREST")
+	private String expectedProfit;// 预期收益
+	
+	@SerializedName("FINANCE_INTEREST_RATE")
+	private String yearRate;// 年化利率
+	
+	@SerializedName("FINANCE_PERIOD_FORMAT")
+	private String investData;//投资期限
+
+	@SerializedName("STATUS")
+	private String state;//满标复审
+	
+	@SerializedName("OID_TRANSFER_ID")
+	private String typeFlg;//id
+	
+	@SerializedName("TENDER_FROM")
+	private String TENDER_FROM;//1是非债权  
+	
+	@SerializedName("TRANSFER_CONTRACT_ID")
+	private String TRANSFER_CONTRACT_ID;//债权编号
+	
+	
+	
+	
+	
+	public String getTRANSFER_CONTRACT_ID() {
+		return TRANSFER_CONTRACT_ID;
+	}
+
+	public void setTRANSFER_CONTRACT_ID(String tRANSFER_CONTRACT_ID) {
+		TRANSFER_CONTRACT_ID = tRANSFER_CONTRACT_ID;
+	}
+
+	public String getTENDER_FROM() {
+		return TENDER_FROM;
+	}
+
+	public void setTENDER_FROM(String tENDER_FROM) {
+		TENDER_FROM = tENDER_FROM;
+	}
+
+	public String getTypeFlg() {
+		return typeFlg;
+	}
+
+	public void setTypeFlg(String typeFlg) {
+		this.typeFlg = typeFlg;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getLoanFlg() {
+		return loanFlg;
+	}
+
+	public void setLoanFlg(String loanFlg) {
+		this.loanFlg = loanFlg;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getFinancingAmount() {
+		return financingAmount;
+	}
+
+	public void setFinancingAmount(String financingAmount) {
+		this.financingAmount = financingAmount;
+	}
+
+	public String getExpectedProfit() {
+		return expectedProfit;
+	}
+
+	public void setExpectedProfit(String expectedProfit) {
+		this.expectedProfit = expectedProfit;
+	}
+
+	public String getYearRate() {
+		return yearRate;
+	}
+
+	public void setYearRate(String yearRate) {
+		this.yearRate = yearRate;
+	}
+
+	public String getInvestData() {
+		return investData;
+	}
+
+	public void setInvestData(String investData) {
+		this.investData = investData;
+	}
+
+	public static Parcelable.Creator<MyInvestBidModel> getCREATOR() {
+		return CREATOR;
+	}
+
+	public static void setCREATOR(Parcelable.Creator<MyInvestBidModel> cREATOR) {
+		CREATOR = cREATOR;
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		// TODO Auto-generated method stub
+		QuickSetParcelableUtil.write(dest, this);
+		
+	}
+	
+	public static  Parcelable.Creator<MyInvestBidModel> CREATOR = new Creator<MyInvestBidModel>() {
+
+		@Override
+		public MyInvestBidModel createFromParcel(Parcel source) {
+			MyInvestBidModel obj = (MyInvestBidModel) QuickSetParcelableUtil
+					.read(source, MyInvestBidModel.class);
+			return obj;
+		}
+
+		@Override
+		public MyInvestBidModel[] newArray(int size) {
+			return new MyInvestBidModel[size];
+		}
+
+	};
+
+}

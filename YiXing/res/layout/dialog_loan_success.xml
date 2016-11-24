@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x300"
+    android:layout_height="match_parent"
+    android:background="@color/font_gray"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="@dimen/x300"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_round_shape"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y30"
+            android:src="@drawable/loan_success_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y10"
+            android:text="恭喜您 , 贷款申请提交成功 !"
+            android:textColor="#46BB1E"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y25"
+            android:text="网站已开始受理, 你可以在五个工作日以后通过" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="申请号 " />
+
+            <TextView
+                android:id="@+id/tv_dialog_loan_success_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="201208310018"
+                android:textColor="@color/title_color_orange"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 进行查询" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_dialog_loan_success_go_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:layout_marginBottom="@dimen/y25"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x25"
+            android:layout_marginTop="@dimen/y25"
+            android:background="@drawable/recharge_button_background"
+            android:gravity="center"
+            android:text="返回首页"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

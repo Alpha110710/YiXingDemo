@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x250"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="@dimen/x250"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_translucence_line"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@drawable/shape_white_fifteen_round"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_dialog_back"
+                android:layout_width="@dimen/x25"
+                android:layout_height="@dimen/y25"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/x10"
+                android:src="@drawable/recharge_success_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="20dp"
+                android:text="输入受赠人手机号码："
+                android:textColor="@color/font_dark_gray" />
+
+            <EditText
+                android:id="@+id/et_dialog_tele_num"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/edittext_white_background"
+                android:maxLength="11" />
+
+            <TextView
+                android:id="@+id/tv_dialog_tishi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
+                android:text="平台查无此人，请重新输入"
+                android:textColor="@color/alert_msg_font_color"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_dialog_confirm"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/selector_dialog_add_rate_coupon"
+                android:gravity="center"
+                android:text="确认"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/ll_dialog_down"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/tv_dialog_gived_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_dialog_gived_tele_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/font_black" />
+
+                <Button
+                    android:id="@+id/btn_gived_confirm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_orange_large_round"
+                    android:gravity="center"
+                    android:text="确认赠送"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

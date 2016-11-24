@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yixing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sv_fragment_first_pull_refresh_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="pullFromStart" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/viewpager_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y118"
+                android:visibility="visible" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/top_banner_android" >
+                </android.support.v4.view.ViewPager>
+
+                <LinearLayout
+                    android:id="@+id/viewGroup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginRight="40dp"
+                    android:gravity="right"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y33"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/home_notice"
+                    android:drawablePadding="10dp"
+                    android:paddingLeft="@dimen/x10"
+                    android:text="最新公告"
+                    android:textColor="@color/font_black"
+                    android:textStyle="bold" 
+                     android:textSize="15sp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <com.yixing.ui.widget.AutoImageView
+                        android:id="@+id/iv_notice_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
+                    <com.yixing.ui.widget.AutoTextView
+                        android:id="@+id/autotv_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="@dimen/x10"
+                        android:singleLine="true"
+                        android:text="" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y10"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:id="@+id/ll_loan_car"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_loan_car" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y3"
+                        android:layout_marginBottom="@dimen/y5"
+                        android:text="e兴车贷"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_loan_house"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_loan_house" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y3"
+                        android:layout_marginBottom="@dimen/y5"
+                        android:text="e兴房贷"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_loan_public"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_loan_public" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y3"
+                        android:text="公益贷"
+                        android:layout_marginBottom="@dimen/y5"
+                        android:textSize="10sp" />
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:id="@+id/ll_loan_bank_recommend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_loan_bank_recommend" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/y5"
+                        android:layout_marginTop="@dimen/y3"
+                        android:text="政府银行保荐"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_loan_guarantee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_loan_guarantee" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/y5"
+                        android:layout_marginTop="@dimen/y3"
+                        android:text="担保贷"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            
+
+            <FrameLayout
+                android:id="@+id/fl_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x250"
+                android:visibility="gone" >
+
+                <com.yixing.ui.widget.CircleImageView
+                    android:id="@+id/iv_account_header_icon"
+                    android:layout_width="@dimen/x210"
+                    android:layout_height="@dimen/x210"
+                     android:layout_gravity="center"
+                    android:src="@drawable/yuan" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x30"
+                    android:src="@drawable/home_recommend" />
+
+                <com.yixing.ui.widget.CircleProgressBar
+                    android:id="@+id/cpb_progress"
+                    android:layout_width="@dimen/x200"
+                    android:layout_height="@dimen/x200"
+                    android:layout_gravity="center"
+                    app:roundProgressColor="@color/title_color_blue"
+                    app:textIsDisplayable="false" />
+
+                <TextView
+                    android:id="@+id/tv_home_borrow_title"
+                    android:layout_width="@dimen/x140"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x55"
+                    android:gravity="center_horizontal"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x85"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="年化收益"
+                        android:textColor="@color/font_gray"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/tv_home_borrow_rate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/title_color_orange"
+                            android:textSize="45sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/x10"
+                            android:text="%"
+                            android:textColor="@color/title_color_orange" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/x170"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x155"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="可投"
+                        android:textColor="@color/font_gray" />
+
+                    <TextView
+                        android:id="@+id/tv_home_borrow_available_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:singleLine="true"
+                        android:text="123,775,456.00元"
+                        android:textColor="@color/font_black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/x140"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x175"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="期限"
+                        android:textColor="@color/font_gray" />
+
+                    <TextView
+                        android:id="@+id/tv_home_borrow_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:singleLine="true"
+                        android:text="12个月"
+                        android:textColor="@color/font_black" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_repay_style"
+                    android:layout_width="@dimen/x100"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x195"
+                    android:gravity="center"
+                    android:text="" />
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_home_invest_now"
+                android:layout_width="@dimen/x200"
+                android:layout_height="@dimen/y35"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/y8"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:background="@drawable/shape_orange_large_round"
+                android:text="立即投资"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_home_regist_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/y8"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_home_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="@dimen/x10"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingLeft="@dimen/x10"
+                    android:paddingTop="@dimen/y10"
+                    android:text="登录" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/" />
+
+                <TextView
+                    android:id="@+id/tv_home_regist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:paddingBottom="@dimen/y10"
+                    android:paddingRight="@dimen/x10"
+                    android:paddingTop="@dimen/y10"
+                    android:text="注册 " />
+            </LinearLayout>
+        </LinearLayout>
+ 
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+</LinearLayout>

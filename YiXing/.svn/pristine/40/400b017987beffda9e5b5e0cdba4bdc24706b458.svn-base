@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   
+
+        <include layout="@layout/header_normal_orange" />
+        <!-- 密码重置 -->
+
+        <LinearLayout
+            android:id="@+id/ll_security_center_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x10"
+                android:gravity="center_vertical"
+                android:text="新密码"
+                android:textColor="@color/font_black" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/y10"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginTop="@dimen/y10"
+                android:background="@color/font_gray" />
+
+            <EditText
+                android:id="@+id/et_reset_deal_pwd_new"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x8"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入新密码"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:password="true"
+                android:textColor="@color/font_black"
+                android:textColorHint="@color/font_gray"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_reset_deal_pwd_new"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" >
+
+                <CheckBox
+                    android:id="@+id/cb_reset_deal_pwd_new"
+                    android:layout_width="@dimen/y18"
+                    android:layout_height="@dimen/x13"
+                    android:layout_marginLeft="@dimen/x7"
+                    android:layout_marginRight="@dimen/x10"
+                    android:background="@drawable/login_check_box_eye"
+                    android:button="@null"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:paddingBottom="@dimen/x7"
+                    android:paddingTop="@dimen/x7" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y15"
+            android:text="*6-20个字符 , 不能单独使用字母、数字或符号"
+            android:textColor="@color/font_red"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_reset_deal_pwd_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y15"
+            android:background="@drawable/shape_orange_large_round"
+            android:text="确认"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+

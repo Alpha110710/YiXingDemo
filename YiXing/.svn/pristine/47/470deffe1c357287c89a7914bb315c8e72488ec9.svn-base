@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" >
+
+        <TextView
+            android:id="@+id/tv_item_plan_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:text="16/07/01"
+            android:textColor="@color/font_gray" />
+
+        <TextView
+            android:id="@+id/tv_item_plan_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:text="回款详情"
+            android:textColor="@color/title_color_orange" />
+
+        <TextView
+            android:id="@+id/tv_item_plan_periods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginRight="@dimen/x25"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_toLeftOf="@id/tv_item_plan_detail"
+            android:text="1/6"
+            android:textColor="@color/font_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_toLeftOf="@id/tv_item_plan_periods"
+            android:text="期数 : "
+            android:textColor="@color/font_gray" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/font_gray" />
+
+    <TextView
+        android:id="@+id/tv_item_plan_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x10"
+        android:paddingRight="@dimen/x10"
+        android:paddingTop="@dimen/x15"
+        android:singleLine="true"
+        android:text="国有担保-房产抵押借款2016020-2号"
+        android:textColor="@color/font_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/x15" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/x15"
+            android:text="待回本金(元)"
+            android:textColor="@color/font_gray" />
+
+        <TextView
+            android:id="@+id/tv_item_plan_benjin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginTop="@dimen/x15"
+            android:text="15,658.00"
+            android:textColor="@color/title_color_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginTop="@dimen/x15"
+            android:text="待回利息(元)"
+            android:textColor="@color/font_gray" />
+
+        <TextView
+            android:id="@+id/tv_item_plan_lixi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x5"
+            android:layout_marginTop="@dimen/x15"
+            android:text="15.82"
+            android:textColor="@color/title_color_blue" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y10"
+        android:background="@color/transparent" />
+
+</LinearLayout>

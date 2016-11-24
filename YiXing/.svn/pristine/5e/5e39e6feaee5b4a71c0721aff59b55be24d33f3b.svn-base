@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+    <!-- 手机号码修改 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:gravity="center_vertical"
+            android:text="验证码"
+            android:textColor="@color/font_black" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@color/font_gray" />
+
+        <EditText
+            android:id="@+id/et_reset_num_one_old"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x8"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入原手机验证码"
+            android:inputType="number"
+            android:textColor="@color/font_black"
+            android:textColorHint="@color/font_gray"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_reset_num_one_get_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y25"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/x10"
+            android:background="@drawable/shape_orange_white_large_round"
+            android:paddingLeft="@dimen/x5"
+            android:paddingRight="@dimen/x5"
+            android:text="获取短信验证码"
+            android:textColor="@color/title_color_orange" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10"
+        android:layout_marginTop="@dimen/y15"
+        android:text="*6-20个字符 , 不能单独使用字母、数字或符号"
+        android:textColor="@color/font_red"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_reset_num_one_go_next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y15"
+        android:background="@drawable/shape_orange_large_round"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/tv_reset_num_one_old_cant_use"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y20"
+        android:text="原手机不可用 ? 点击这里"
+        android:textColor="@color/title_color_orange" />
+
+</LinearLayout>

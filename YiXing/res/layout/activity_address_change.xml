@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+
+    <LinearLayout
+        android:id="@+id/ll_address_change"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:background="@color/white" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:gravity="center_vertical"
+            android:text="所在地址"
+            android:textColor="@color/font_black" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@color/font_gray" />
+
+        <TextView
+            android:id="@+id/tv_address_change"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x8"
+            android:drawablePadding="@dimen/x10"
+            android:drawableRight="@drawable/go_next"
+            android:gravity="center_vertical"
+            android:hint="省、市"
+            android:textColor="@color/font_gray" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_gray_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y33"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:gravity="center_vertical"
+            android:text="详细地址"
+            android:textColor="@color/font_black" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@color/font_gray" />
+
+        <EditText
+            android:id="@+id/et_address_change_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x8"
+            android:background="@null"
+            android:drawablePadding="@dimen/x10"
+            android:gravity="center_vertical"
+            android:hint="街道、楼牌号等"
+            android:textColor="@color/font_gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_address_change_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y15"
+        android:background="@drawable/shape_orange_large_round"
+        android:text="保存并使用"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
+</LinearLayout>

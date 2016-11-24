@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yixing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.yixing.ui.widget.PagerSlidingTabStrip
+            android:id="@+id/more_tab"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@color/white"
+            app:pstsDividerColor="@android:color/transparent"
+            app:pstsIndicatorColor="@color/title_color_orange"
+            app:pstsIndicatorHeight="2dp"
+            app:pstsShouldExpand="true"
+            app:pstsTabBackground="@drawable/background_tab"
+            app:pstsUnderlineHeight="2dp"
+            app:selectedTabTextColor="@color/title_color_orange" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/more_tab"
+           />
+    </RelativeLayout>
+
+</LinearLayout>

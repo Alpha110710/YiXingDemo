@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yixing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	<include 
+	    android:id="@+id/top"
+	    layout="@layout/header_normal_orange"/>
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/y10"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@drawable/shape_orange_large_round"
+        android:text="立即投资"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+    
+     <RelativeLayout
+         android:layout_above="@id/submit"
+         android:layout_below="@id/top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        
+        <com.yixing.ui.widget.PagerSlidingTabStrip
+            android:id="@+id/investment_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@color/white"
+            app:pstsDividerColor="@android:color/transparent"
+            app:pstsIndicatorColor="@color/title_color_orange"
+            app:pstsIndicatorHeight="2dp"
+            app:pstsShouldExpand="true"
+            app:pstsTabBackground="@drawable/background_tab"
+            app:pstsUnderlineHeight="2dp"
+            app:selectedTabTextColor="@color/title_color_orange" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/investment_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y5"
+            android:layout_below="@id/investment_tabs" />
+    </RelativeLayout>
+
+</RelativeLayout>

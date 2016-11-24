@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_message"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/y10"
+    android:paddingLeft="@dimen/x10"
+    android:paddingRight="@dimen/x10"
+    android:paddingTop="@dimen/y10" >
+
+    <ImageView
+        android:id="@+id/iv_item_message_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/x10" />
+
+    <TextView
+        android:id="@+id/tv_item_message_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="充值成功"
+        android:textColor="@color/font_black" />
+
+</LinearLayout>

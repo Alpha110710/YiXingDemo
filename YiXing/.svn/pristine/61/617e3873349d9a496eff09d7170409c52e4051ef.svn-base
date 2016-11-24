@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x250"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/x250"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_round_shape"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_dialog_withdraw_success_back"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/y20"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/x10"
+            android:src="@drawable/recharge_success_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/withdraw_deposit_success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y10"
+            android:text="恭喜您 , 提现成功 !"
+            android:textColor="#46BB1E"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_dialog_withdraw_success_Jump"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:layout_marginBottom="@dimen/y25"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x25"
+            android:layout_marginTop="@dimen/y15"
+            android:background="@drawable/recharge_button_background"
+            android:gravity="center"
+            android:text="点击返回我的账户"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,154 @@
+package com.yixing.model;
+
+import com.google.gson.annotations.SerializedName;
+
+public class ReturnMoneyDetailModelOne extends BaseModel{
+
+	 /**
+     * PRODUCTS_TITLE : e兴车贷-THK车贷082501期
+     * RATE : 11.00
+     * TENDER_AMOUNT : 10000.00
+     * PERIOD : 6个月
+     * AWARD : 0.0
+     * SUCCESS_DATE : 16/08/25
+     * RECOVER_END_DATE : 17/02/25
+     * REPAY_TYPE : 按月付息,到期还本
+     * STATUS : 回款中
+     */
+		@SerializedName("PRODUCTS_TITLE")
+        private String PRODUCTS_TITLE;
+		
+		@SerializedName("RATE")
+        private String RATE;
+		
+		@SerializedName("TENDER_AMOUNT")
+        private String TENDER_AMOUNT;
+		
+		@SerializedName("PERIOD")
+        private String PERIOD;
+		
+		@SerializedName("AWARD")
+        private double AWARD;
+		
+		@SerializedName("SUCCESS_DATE")
+        private String SUCCESS_DATE;
+		
+		@SerializedName("RECOVER_END_DATE")
+        private String RECOVER_END_DATE;
+		
+		@SerializedName("REPAY_TYPE")
+        private String REPAY_TYPE;
+		
+		@SerializedName("STATUS")
+        private String STATUS;
+		
+		@SerializedName("COUPON_RATE")
+		private String COUPON_RATE;//年化利率 加息
+		
+		@SerializedName("AGREEMENT_FLAG")
+		private String AGREEMENT_FLAG;//1 借款标    2 债权   3e星车贷
+		
+		@SerializedName("TENDER_AMOUNT_UNIT")
+		private String TENDER_AMOUNT_UNIT;//投资金额的单位
+
+		
+		
+		
+		
+        public String getTENDER_AMOUNT_UNIT() {
+			return TENDER_AMOUNT_UNIT;
+		}
+
+		public void setTENDER_AMOUNT_UNIT(String tENDER_AMOUNT_UNIT) {
+			TENDER_AMOUNT_UNIT = tENDER_AMOUNT_UNIT;
+		}
+
+		public String getAGREEMENT_FLAG() {
+			return AGREEMENT_FLAG;
+		}
+
+		public void setAGREEMENT_FLAG(String aGREEMENT_FLAG) {
+			AGREEMENT_FLAG = aGREEMENT_FLAG;
+		}
+
+		public String getCOUPON_RATE() {
+			return COUPON_RATE;
+		}
+
+		public void setCOUPON_RATE(String cOUPON_RATE) {
+			COUPON_RATE = cOUPON_RATE;
+		}
+
+		public String getPRODUCTS_TITLE() {
+            return PRODUCTS_TITLE;
+        }
+
+        public void setPRODUCTS_TITLE(String PRODUCTS_TITLE) {
+            this.PRODUCTS_TITLE = PRODUCTS_TITLE;
+        }
+
+        public String getRATE() {
+            return RATE;
+        }
+
+        public void setRATE(String RATE) {
+            this.RATE = RATE;
+        }
+
+        public String getTENDER_AMOUNT() {
+            return TENDER_AMOUNT;
+        }
+
+        public void setTENDER_AMOUNT(String TENDER_AMOUNT) {
+            this.TENDER_AMOUNT = TENDER_AMOUNT;
+        }
+
+        public String getPERIOD() {
+            return PERIOD;
+        }
+
+        public void setPERIOD(String PERIOD) {
+            this.PERIOD = PERIOD;
+        }
+
+        public double getAWARD() {
+            return AWARD;
+        }
+
+        public void setAWARD(double AWARD) {
+            this.AWARD = AWARD;
+        }
+
+        public String getSUCCESS_DATE() {
+            return SUCCESS_DATE;
+        }
+
+        public void setSUCCESS_DATE(String SUCCESS_DATE) {
+            this.SUCCESS_DATE = SUCCESS_DATE;
+        }
+
+        public String getRECOVER_END_DATE() {
+            return RECOVER_END_DATE;
+        }
+
+        public void setRECOVER_END_DATE(String RECOVER_END_DATE) {
+            this.RECOVER_END_DATE = RECOVER_END_DATE;
+        }
+
+        public String getREPAY_TYPE() {
+            return REPAY_TYPE;
+        }
+
+        public void setREPAY_TYPE(String REPAY_TYPE) {
+            this.REPAY_TYPE = REPAY_TYPE;
+        }
+
+        public String getSTATUS() {
+            return STATUS;
+        }
+
+        public void setSTATUS(String STATUS) {
+            this.STATUS = STATUS;
+        }
+	
+}

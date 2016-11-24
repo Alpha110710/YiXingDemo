@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_new_notice_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:drawableLeft="@drawable/new_notice_point"
+            android:drawablePadding="@dimen/x5"
+            android:text="关于"
+            android:textColor="@color/font_black" />
+
+        <TextView
+            android:id="@+id/tv_new_notice_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:text="2015-12-23"
+            android:textColor="@color/font_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_toLeftOf="@id/tv_new_notice_data"
+            android:layout_toRightOf="@id/tv_new_notice_about"
+            android:singleLine="true"
+            android:text="e兴金融周年庆活动的公告减肥开始减肥咖啡姐"
+            android:textColor="@color/font_black" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_radio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/y5" >
+
+        <RadioButton
+            android:id="@+id/radiobutton_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_home"
+            android:gravity="center"
+            android:paddingTop="@dimen/y5"
+            android:text="首页"
+            android:textColor="@color/color_text_radiobutton"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_investment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_investment"
+            android:gravity="center"
+            android:paddingTop="@dimen/y5"
+            android:text="投资专区"
+            android:textColor="@color/color_text_radiobutton"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_loan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_loan"
+            android:gravity="center"
+            android:paddingTop="@dimen/y5"
+            android:text="借款专区"
+            android:textColor="@color/color_text_radiobutton"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_account"
+            android:gravity="center"
+            android:paddingTop="@dimen/y5"
+            android:text="我的账户"
+            android:textColor="@color/color_text_radiobutton"
+            android:textSize="11sp" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:button="@null"
+            android:drawableTop="@drawable/selector_more"
+            android:gravity="center"
+            android:paddingTop="@dimen/y5"
+            android:text="关于我们"
+            android:textColor="@color/color_text_radiobutton"
+            android:textSize="11sp" />
+    </RadioGroup>
+
+</LinearLayout>

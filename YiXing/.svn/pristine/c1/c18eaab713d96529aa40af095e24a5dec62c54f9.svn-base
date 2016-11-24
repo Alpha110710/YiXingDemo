@@ -1,0 +1,433 @@
+package com.yixing.ui.investment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.google.gson.annotations.SerializedName;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.yixing.ExtraConfig;
+import com.yixing.R;
+import com.yixing.biz.InvestmentBiz;
+import com.yixing.biz.exception.BizFailure;
+import com.yixing.biz.exception.ZYException;
+import com.yixing.biz.task.BizDataAsyncTask;
+import com.yixing.dialog.UserCheckDialog;
+import com.yixing.model.BaseModel;
+import com.yixing.model.InvestmentModel;
+import com.yixing.model.ZQDetailModel;
+import com.yixing.model.ZQItemModel;
+import com.yixing.storage.PreferenceCache;
+import com.yixing.ui.base.BaseActivity;
+import com.yixing.ui.init.ActivityLogin;
+import com.yixing.ui.investment.FragmentInvestmentA.Myadapter.ViewHolder;
+import com.yixing.ui.widget.CircleProgressBar;
+import com.yixing.utils.java.AlertUtil;
+import com.yixing.utils.java.StringUtil;
+
+public class ZQDetailActivity extends BaseActivity {
+
+	private TextView zqNumber;// 产品编号
+	private TextView zqTitle;// 产品标题
+	private TextView zqBL;// 折让比例
+	private TextView zqRate;// * 原标年化
+	private TextView zqDeadline;// * 剩余期限
+	private TextView zqFairMoney;// 公允价值
+	private TextView zqFairMoneyType;// 公允价值单位
+	private TextView zqTransferPrice;// 转让价格
+	private TextView zqTransferPriceType;// 转让价格单位
+	private TextView zqDeadlineType;// * 剩余期限单位
+	private TextView zqMoney;// * 债权价值
+	private TextView zqMoneyType;// * 债权价值单位
+	private TextView zqRemainMoney; // 剩余可投
+	private TextView zqRemainMoneyType; // 剩余可投单位
+	private TextView zqRepayment; // 还款方式
+	private Button zqSubmit;// 立即投资
+	private PullToRefreshListView list;
+	TextView tv;
+	private int pageIndex = 0;
+	private ZQDetailModel model;
+	Myadapter adapter;
+	private String productId;// 标的id
+	private String transferId;// 债券id
+
+	private TextView zq_time;// 购买时间
+	private TextView zq_buymoney;// 购买金额
+	private TextView zq_money;// 实付金额
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_zq_detail);
+		transferId = getIntent().getStringExtra("transferId");
+		productId = getIntent().getStringExtra("productId");
+		initView();
+		setTitle("债权详情");
+	}
+
+	private void initView() {
+		adapter = new Myadapter();
+		zqNumber = (TextView) findViewById(R.id.zq_number);
+		zqTitle = (TextView) findViewById(R.id.zq_title_name);
+		zqBL = (TextView) findViewById(R.id.zq_bl);
+		zqRate = (TextView) findViewById(R.id.zqRate);
+		zqDeadline = (TextView) findViewById(R.id.zqDeadline);
+		zqDeadlineType = (TextView) findViewById(R.id.zqDeadlineType);
+		zqFairMoney = (TextView) findViewById(R.id.zqFairMoney);
+		zqFairMoneyType = (TextView) findViewById(R.id.zqFairMoneyType);
+		zqMoney = (TextView) findViewById(R.id.zqMoney);
+		zqMoneyType = (TextView) findViewById(R.id.zqMoneyType);
+		zqTransferPrice = (TextView) findViewById(R.id.zqTransferPrice);
+		zqTransferPriceType = (TextView) findViewById(R.id.zqTransferPriceType);
+		zqRemainMoney = (TextView) findViewById(R.id.zqRemainMoney);
+
+		zq_time = (TextView) findViewById(R.id.zq_time);
+		zq_buymoney = (TextView) findViewById(R.id.zq_buymoney);
+		zq_money = (TextView) findViewById(R.id.zq_money);
+
+		zqRemainMoneyType = (TextView) findViewById(R.id.zqRemainMoneyType);
+		zqRepayment = (TextView) findViewById(R.id.zqRepayment);
+		list = (PullToRefreshListView) findViewById(R.id.zq_list);
+		list.setMode(Mode.BOTH);
+		list.getRefreshableView().setAdapter(adapter);
+		list.setOnRefreshListener(new OnRefreshListener2<ListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				getDataList(false, true);
+
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				getDataList(false, false);
+			}
+		});
+		zqSubmit = (Button) findViewById(R.id.zq_detail_bottom);
+		getData(true, true);
+
+	}
+
+	private BizDataAsyncTask<String> getCheck;
+
+	/**
+	 * check(判断用户是否可以进行投资)
+	 */
+	private void getCheck(final String productId) {
+		getCheck = new BizDataAsyncTask<String>() {
+
+			@Override
+			protected void onExecuteSucceeded(String result) {
+				if ("0".equals(result)) {
+					// 跳转到立即购买页面
+					Intent intent = new Intent(ZQDetailActivity.this,
+							ZQBUYActivity.class);
+					intent.putExtra("transferId", transferId);// 债权的id
+					startActivity(intent);
+
+				} else if ("1".equals(result)) {
+					UserCheckDialog dialog = new UserCheckDialog(
+							ZQDetailActivity.this, R.style.My_Dialog, true);
+					dialog.show();
+
+				} else if ("2".equals(result)) {
+					AlertUtil.t(ZQDetailActivity.this, "没有实名认证");
+				}
+
+			}
+
+			@Override
+			protected String doExecute() throws ZYException, BizFailure {
+				return InvestmentBiz.realNameAuth();
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+			}
+		};
+
+		getCheck.execute();
+	}
+
+	private BizDataAsyncTask<BaseModel> getData;
+
+	// 访问接口获取数据
+	private void getData(final boolean isFirst, final boolean isPullDown) {
+		getData = new BizDataAsyncTask<BaseModel>() {
+
+			@Override
+			protected BaseModel doExecute() throws ZYException, BizFailure {
+				return InvestmentBiz.getDataList(transferId, productId);// 传递标的唯一id
+			}
+
+			@SuppressWarnings("deprecation")
+			@Override
+			protected void onExecuteSucceeded(BaseModel result) {
+				// TODO Auto-generated method stub
+				model = (ZQDetailModel) result;
+				getInitData();// 通过model给控件赋值
+				getDataList(true, true);
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				// TODO Auto-generated method stub
+			}
+
+		};
+
+		if (isFirst) {
+			getData.setWaitingView(getWaitingView());
+		}
+
+		getData.execute();
+
+	}
+
+	private boolean end = false;
+	private BizDataAsyncTask<List<BaseModel>> getDataList;
+
+	// 获取投资人list
+	public void getDataList(final boolean first, final boolean isPullDown) {
+		getDataList = new BizDataAsyncTask<List<BaseModel>>() {
+			@SuppressWarnings("deprecation")
+			@Override
+			protected void onExecuteSucceeded(List<BaseModel> result) {
+				// TODO Auto-generated method stub
+
+				if (result.size() < ExtraConfig.DEFAULT_PAGE_COUNT) {
+
+					end = true;
+					if (isPullDown && result.size() == 0) {
+						list.setEmptyView(tv);
+					}
+					list.setPullLabel("没有更多数据", Mode.PULL_FROM_END);
+					list.setReleaseLabel("没有更多数据", Mode.PULL_FROM_END);
+					list.setRefreshingLabel("没有更多数据", Mode.PULL_FROM_END);
+				} else {
+					end = false;
+					list.setPullLabel("上拉刷新", Mode.PULL_FROM_END);
+					list.setReleaseLabel("放开以刷新", Mode.PULL_FROM_END);
+					list.setRefreshingLabel("正在载入", Mode.PULL_FROM_END);
+				}
+
+				if (isPullDown) {
+					pageIndex = 0;
+					adapter.removeAll();
+				}
+				pageIndex++;
+
+				for (int i = 0; i < result.size(); i++) {
+					adapter.addItem((ZQItemModel) result.get(i));
+				}
+				adapter.notifyDataSetChanged();
+
+				list.onRefreshComplete();
+
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				list.onRefreshComplete();
+			}
+
+			@Override
+			protected List<BaseModel> doExecute() throws ZYException,
+					BizFailure {
+				if (isPullDown) {
+					return InvestmentBiz.getZQDataList(transferId, "0",
+							ExtraConfig.DEFAULT_PAGE_COUNT + "");
+				} else {
+					if (end) {
+						return new ArrayList<BaseModel>();
+					} else {
+						return InvestmentBiz.getZQDataList(transferId,
+								pageIndex + "", ExtraConfig.DEFAULT_PAGE_COUNT
+										+ "");
+					}
+				}
+			}
+
+		};
+
+		getDataList.execute();
+		tv = new TextView(ZQDetailActivity.this);
+		tv.setGravity(Gravity.CENTER);
+		tv.setText("暂无数据");
+
+	}
+
+	// 给控件赋值
+	@SuppressLint("NewApi")
+	private void getInitData() {
+		zqNumber.setText("债权编号" + model.getZqNumber());// 产品编号
+		zqTitle.setText(model.getZqTitle());// 产品标题
+		zqBL.setText(model.getZqBL() + "%");// 折让比例
+		zqRate.setText(model.getZqRate());// * 原标年化
+		zqDeadline.setText(model.getZqDeadline());// * 剩余期限
+		zqFairMoney.setText(model.getZqFairMoney());// 公允价值
+		zqFairMoneyType.setText(model.getZqFairMoneyType());// 公允价值单位
+		zqTransferPrice.setText(model.getZqTransferPrice());// 转让价格
+		zqTransferPriceType.setText(model.getZqTransferPriceType());// 转让价格单位
+		// zqDeadlineType.setText(model.getZqBL());// * 剩余期限单位
+		zqMoney.setText(model.getZqMoney());// * 债权价值
+		zqMoneyType.setText(model.getZqMoneyType());// * 债权价值单位
+		zqRemainMoney.setText(model.getZqRemainMoney()); // 剩余可投
+		zqRemainMoneyType.setText(model.getZqRemainMoneyType()); // 剩余可投单位
+		zqRepayment.setText(model.getZqRepayment()); // 还款方式
+		if (!"立即购买".equals(model.getRET_MESSAGE())) {
+			zq_time.setText("购买时间");
+			zq_buymoney.setText("购买金额(元)");
+			zq_money.setText("实付金额(元)");
+			zqSubmit.setBackground(getResources().getDrawable(
+					R.drawable.shape_grey_large_round));
+			zqSubmit.setClickable(false);
+		}
+		zqSubmit.setText(model.getRET_MESSAGE());
+		if (zqSubmit.isClickable()) {
+			zqSubmit.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// 走接口判断用户是否可以进行投资
+					if (StringUtil.isEmpty(PreferenceCache.getToken())) {
+						Intent itToRegist = new Intent(ZQDetailActivity.this,
+								ActivityLogin.class);
+						startActivity(itToRegist);
+					} else {
+						getCheck(productId);
+					}
+
+				}
+			});
+		}
+	}
+
+	class Myadapter extends BaseAdapter {
+		private List<ZQItemModel> list = new ArrayList<ZQItemModel>();
+
+		// 移除所有数据
+		public void removeAll() {
+			if (list != null && list.size() > 0) {
+				for (int i = list.size() - 1; i >= 0; i--) {
+					list.remove(i);
+				}
+			}
+		}
+
+		@Override
+		public int getCount() {
+			return list.size();
+		}
+
+		// 添加数据
+		public void addItem(ZQItemModel investmentModel) {
+			list.add(investmentModel);
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return list.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			final ViewHolder viewHodler;
+			if (convertView == null) {
+				viewHodler = new ViewHolder();
+				convertView = LayoutInflater.from(ZQDetailActivity.this)
+						.inflate(R.layout.item_listview_zqdetail, null);
+				viewHodler.time = (TextView) convertView
+						.findViewById(R.id.item_zq_time);
+				viewHodler.buyMoney = (TextView) convertView
+						.findViewById(R.id.item_zq_buymoney);
+				viewHodler.money = (TextView) convertView
+						.findViewById(R.id.item_zq_money);
+				convertView.setTag(viewHodler);
+			} else {
+				viewHodler = (ViewHolder) convertView.getTag();
+			}
+			if (model != null) {
+				if ("立即购买".equals(model.getRET_MESSAGE())) {
+				
+					viewHodler.time.setText(list.get(position)
+							.getRECOVER_DATE_FORMAT());// 预计还款时间
+					viewHodler.buyMoney.setText(list.get(position)
+							.getRECOVER_PERIOD());// 回款期数
+					viewHodler.money.setText(list.get(position)
+							.getRECOVER_AMOUNT_FORMAT());// 回款金额
+					
+				} else if ("转让成功".equals(model.getRET_MESSAGE())) {
+			
+					
+					viewHodler.time.setText(list.get(position).getTime());
+					viewHodler.buyMoney.setText(list.get(position)
+							.getBuyMoney());
+					viewHodler.money.setText(list.get(position).getMoney());
+				} else if ("转让失败".equals(model.getRET_MESSAGE())) {// 
+					viewHodler.time.setText(list.get(position)
+							.getRECOVER_DATE_FORMAT());// 预计还款时间
+					viewHodler.buyMoney.setText(list.get(position)
+							.getRECOVER_PERIOD());// 回款期数
+					viewHodler.money.setText(list.get(position)
+							.getRECOVER_AMOUNT_FORMAT());// 回款金额
+				}
+			}
+
+			return convertView;
+		}
+
+		class ViewHolder {
+			TextView time;// 时间
+			TextView buyMoney;// 实际金额
+			TextView money;// 实付金额
+		}
+	}
+
+	public static void getTotalHeightofListView(ListView listView) {
+		ListAdapter mAdapter = listView.getAdapter();
+		if (mAdapter == null) {
+			return;
+		}
+		int totalHeight = 0;
+		for (int i = 0; i < mAdapter.getCount(); i++) {
+			View mView = mAdapter.getView(i, null, listView);
+			mView.measure(
+					MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+					MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+			// mView.measure(0, 0);
+			totalHeight += mView.getMeasuredHeight();
+		}
+		ViewGroup.LayoutParams params = listView.getLayoutParams();
+		params.height = totalHeight
+				+ (listView.getDividerHeight() * (mAdapter.getCount() - 1));
+		listView.setLayoutParams(params);
+		listView.requestLayout();
+	}
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <color name="title_color_orange">#fe8c12</color>
+    <color name="title_color_blue">#57C1BF</color>
+    
+    <color name="font_gray">#B3B3B3</color>
+    <color name="font_black">#333333</color>
+    
+    
+    <color name="header_bar">#fbfbfb</color>
+    <color name="write_division_line">#67cecb</color>
+    
+     <color name="background_tab_pressed">#8833B5E5</color>
+
+    
+    
+    
+    <color name="font_red">#FC403F</color>
+    <color name="font_light_black">#3c3c3c</color>
+    <color name="font_blue">#00C7DA</color>
+    <color name="font_green">#00D398</color>
+    <color name="text_blue">#1BC9A6</color>
+    <color name="background_gray">#f3f4f4</color>
+    <color name="translucence">#55000000</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="default_background">#FAFAFA</color>
+    <color name="deep_blue">#00AD8A</color>
+    
+    
+
+    <!-- ///////////////////// -->
+
+    <color name="black">#000000</color>
+    <color name="font_yellow_color">#d19960</color>
+    <color name="bg_debt_surplus_day">#be803f</color>
+    <color name="font_red_color">#be0002</color>
+    <color name="with_draw_hint_bg">#ed4d4d</color>
+    <color name="view_bg_color">#f2f2f2</color>
+    <color name="content_bg">#eeeeee</color>
+    <color name="content_bg_divider">#dcdcdc</color>
+    <color name="layout_bg_color">#ffffff</color>
+    <color name="header_bar_color">#fbfbfb</color>
+    <color name="blue">#2c80c0</color>
+    <color name="tab_bg_color">#ffffff</color>
+    <color name="tab_text_color">#949fab</color>
+    <color name="text_color">#757575</color>
+    
+    <color name="tab_light_blue">#6c9fce</color>
+    <color name="alert_msg_font_color">#e85917</color>
+    <color name="coupon_orange_color">#ffef37</color>
+    <color name="new_tab_bg_color">#f1f5fa</color>
+
+    <!-- font_color -->
+    <color name="font_white">#ffffff</color>
+    <color name="font_light_red">#E85718</color>
+    <color name="font_light_green">#A9D423</color>
+    <color name="font_orange">#d19960</color>
+    <color name="font_light_yellow">#FBCD06</color>
+    <color name="font_maroon">#DB8B8C</color>
+    <color name="font_black_mix_orange">#673205</color>
+    <color name="font_dark_gray">#464646</color>
+    <color name="font_coupon_and_interest_rate">#d19960</color>
+    <color name="circle_gray">#e6e6e6</color>
+    <color name="circle_blue">#3A64A6</color>
+    <color name="circle_orange">#fc7905</color>
+
+    <!-- action_bar -->
+    <color name="bg_title_bar">#FC7905</color>
+
+    <!-- globle -->
+    <color name="bg_common_activity">#F2F2F2</color>
+    <color name="bg_gray_divider">#d1d1d1</color>
+
+    <!-- view's color -->
+    <color name="kedittext_stoke">#FECCA0</color>
+    <color name="kedittext_divider">#F2F2F2</color>
+
+    <!-- activity_login -->
+    <color name="bg_login">#F2F2F2</color>
+    <color name="bg_login_login_btn">#FC7905</color>
+    <color name="register_edittext_frame_foc_color">#f3963b</color>
+    <color name="register_edittext_frame_nor_color">#b7babf</color>
+
+    <!-- activity_home -->
+    <color name="bg_activity_home_line">#E3E3E3</color>
+    <!-- activity_debt -->
+    <color name="bg_debt_transfer">#F0C306</color>
+    <color name="bg_debt_light_orange">#FDF1E5</color>
+    <color name="red">#d7000f</color>
+    <color name="gray">#949fab</color>
+    <!--
+    <color name="green">#59f555</color>
+    <color name="red_in_borrow_item">#d6000e</color>
+ 
+
+    <color name="text_black">#757575</color>
+
+    <color name="header_color">#fe7f2a</color>
+    <color name="login_btn_nor_color">#ff4a32</color>
+    <color name="login_btn_pre_color">#d5000e</color>
+    <color name="pwd_btn_nor_color">#656565</color>
+    <color name="pwd_btn_pre_color">#393737</color>
+    <color name="black_in_login">#5b5b5b</color>
+    <color name="hint_color">#c9c9c9</color>
+    <color name="light_orange">#ff7f32</color>
+    <color name="dark_orange">#ff711b</color>
+    <color name="register_edittext_frame_nor_color">#b7babf</color>
+    <color name="register_edittext_frame_foc_color">#ff7f32</color>
+    <color name="npb_reached_color">#2c80c0</color>
+    <color name="npb_unreached_color">#e1e4e9</color>
+    <color name="white_bg_normal_color">#ffffff</color>
+    <color name="white_bg_pressed_color">#e5e5ea</color>
+    <color name="dark_yellow">#ed8810</color>
+    <color name="light_yellow">#ffc230</color>
+    <color name="btn_pre_color">#74a8ca</color>
+    <color name="btn_nor_color">#2c80c0</color>
+    <color name="light_gray_bg">#f5f5f5</color>
+    <color name="light_gray_corner">#dedede</color>
+    <color name="round_process_color">#f4b200</color>
+    <color name="round_color">#cacaca</color>
+    <color name="text_color">#2aa0ec</color>
+    <color name="light_line">#e5e5e5</color>
+    <color name="rate_color">#ea544a</color>
+    <color name="line_color">#cacaca</color>
+    -->
+
+	<!-- Fx -->
+	<color name="auto_tender_record_top">#EBFFFD</color>
+	<color name="transfer_detail_bg">#FE8C10</color>
+	<color name="green">#11C9A0</color>
+		<color name="standard_red">#e25859</color>
+		<color name="ticket">#E84445</color>
+		
+
+</resources>

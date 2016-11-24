@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y35"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@color/white"
+        android:inputType="text"
+        android:paddingLeft="@dimen/x10"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@drawable/shape_orange_large_round"
+        android:text="保存信息"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
+</LinearLayout>

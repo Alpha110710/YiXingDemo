@@ -1,0 +1,407 @@
+package com.yixing.ui.account;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.yixing.ExtraConfig;
+import com.yixing.R;
+import com.yixing.YixingApp;
+import com.yixing.ExtraConfig.IntentExtraKey;
+import com.yixing.biz.AccountBiz;
+import com.yixing.biz.exception.BizFailure;
+import com.yixing.biz.exception.ZYException;
+import com.yixing.biz.task.BizDataAsyncTask;
+import com.yixing.model.BaseModel;
+import com.yixing.model.MyInvestHoldModel;
+import com.yixing.model.MyInvestPaymentModel;
+import com.yixing.model.ReturnMoneyDetailListModel;
+import com.yixing.model.ReturnMoneyDetailModelOne;
+import com.yixing.model.BaseModel;
+import com.yixing.ui.account.FragmentMyInvestHold.InvestListHoldAdapter;
+import com.yixing.ui.account.FragmentMyInvestPayment.InvestListPaymentAdapter.PaymentListViewHolder;
+import com.yixing.ui.base.BaseActivity;
+import com.yixing.ui.init.ActivityWebView;
+import com.yixing.utils.java.AlertUtil;
+import com.yixing.utils.java.StringUtil;
+
+import android.content.Context;
+import android.content.Intent;
+import android.opengl.Visibility;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class ActivityReturnMoneyDetailOne extends BaseActivity implements OnClickListener {
+
+	private ImageView headerImg;
+	private TextView headerTv;
+
+	private TextView tv_return_money_one_pact;// 查看投资合同
+	private TextView tv_return_money_one_data;// 融资期限
+	private TextView tv_return_money_one_geyue;// 个月/天单位
+	private TextView tv_return_money_one_finaning;// 融资金额
+	private TextView tv_return_money_one_rate;// 年化利率
+	private TextView tv_return_money_one_add_rate;// 年化利率+利息
+	private TextView tv_return_money_one_style;// 还款方式
+	private TextView tv_return_money_one_title;// 投标题
+
+	private PullToRefreshListView pullToRefreshListView;
+	private ReturnMoneyDetailAdapter adapter;
+
+	private int pageIndex = 0;
+	private boolean isEnd = false;
+	private TextView tv;
+
+	private String tenderId, tenderType;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_return_money_detail_one);
+
+		tenderId = getIntent().getStringExtra(ExtraConfig.IntentExtraKey.RETURN_MONEY_DETAIL_ONE_ID);
+		tenderType = getIntent().getStringExtra(ExtraConfig.IntentExtraKey.RETURN_MONEY_DETAIL_ONE_TYPR);
+
+		initView();
+
+		init();
+
+	}
+
+	private void initView() {
+
+		headerImg = (ImageView) findViewById(R.id.iv_back);
+		headerTv = (TextView) findViewById(R.id.tv_title);
+
+		tv_return_money_one_pact = (TextView) findViewById(R.id.tv_return_money_one_pact);
+		tv_return_money_one_data = (TextView) findViewById(R.id.tv_return_money_one_data);
+		tv_return_money_one_geyue = (TextView) findViewById(R.id.tv_return_money_one_geyue);
+		tv_return_money_one_finaning = (TextView) findViewById(R.id.tv_return_money_one_finaning);
+		tv_return_money_one_rate = (TextView) findViewById(R.id.tv_return_money_one_rate);
+		tv_return_money_one_add_rate = (TextView) findViewById(R.id.tv_return_money_one_add_rate);
+		tv_return_money_one_style = (TextView) findViewById(R.id.tv_return_money_one_style);
+		tv_return_money_one_title = (TextView) findViewById(R.id.tv_return_money_one_title);
+		pullToRefreshListView = (PullToRefreshListView) findViewById(R.id.list_return_money_detail_one);
+
+		tv_return_money_one_pact.setOnClickListener(this);
+		headerImg.setOnClickListener(this);
+		headerTv.setText("回款详情");
+
+	}
+
+	private void init() {
+
+		adapter = new ReturnMoneyDetailAdapter(this);
+		pullToRefreshListView.getRefreshableView().setAdapter(adapter);
+
+		// 刷新方法
+		pullToRefreshListView.setOnRefreshListener(new OnRefreshListener2<ListView>() {
+			@Override
+			public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+
+				getReturnMoneyDetail(false, true);
+
+			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+				getReturnMoneyDetail(false, false);
+			}
+
+		});
+
+		getReturnMoneyDetail(true, true);
+		getPaymentDetails();
+	}
+
+	/**
+	 * 获取回款详情任务
+	 */
+	private BizDataAsyncTask<BaseModel> detailTask;
+
+	private void getPaymentDetails() {
+		detailTask = new BizDataAsyncTask<BaseModel>() {
+
+			@Override
+			protected void onExecuteSucceeded(BaseModel result) {
+				ReturnMoneyDetailModelOne one = (ReturnMoneyDetailModelOne) result;
+
+				tv_return_money_one_data.setText(one.getPERIOD().replace("天", "").replace("个月", "").replace("个季度", ""));
+				if (one.getPERIOD().contains("天")) {// 设置时间单位
+					tv_return_money_one_geyue.setText("天");
+				} else if (one.getPERIOD().contains("个月")) {
+					tv_return_money_one_geyue.setText("个月");
+				} else {
+					tv_return_money_one_geyue.setText("个季度");
+				}
+
+				tv_return_money_one_finaning.setText(one.getTENDER_AMOUNT());
+				tv_return_money_one_rate.setText(one.getRATE());
+				tv_return_money_one_style.setText(one.getREPAY_TYPE());
+				tv_return_money_one_title.setText(one.getPRODUCTS_TITLE());
+				if (!StringUtil.isEmpty(one.getCOUPON_RATE())) {
+					tv_return_money_one_add_rate.setVisibility(View.VISIBLE);
+					tv_return_money_one_add_rate.setText("+" + one.getCOUPON_RATE() + "%");
+				} else {
+					tv_return_money_one_add_rate.setVisibility(View.GONE);
+				}
+			}
+
+			@Override
+			protected BaseModel doExecute() throws ZYException, BizFailure {
+				return AccountBiz.getPaymentDetails(tenderId, tenderType);
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				if (!StringUtil.isEmpty(error)) {
+					AlertUtil.t(ActivityReturnMoneyDetailOne.this, error);
+				}
+
+			}
+		};
+		detailTask.execute();
+	}
+
+	/**
+	 * 获取回款详情列表任务
+	 */
+	private BizDataAsyncTask<List<ReturnMoneyDetailListModel>> task;
+
+	private void getReturnMoneyDetail(final boolean first, final boolean isPullDown) {
+
+		task = new BizDataAsyncTask<List<ReturnMoneyDetailListModel>>() {
+
+			@Override
+			protected void onExecuteSucceeded(List<ReturnMoneyDetailListModel> result) {
+				// TODO Auto-generated method stub
+
+				if (result.size() < ExtraConfig.DEFAULT_PAGE_COUNT) {
+					isEnd = true;
+					if (isPullDown && result.size() == 0) {
+						pullToRefreshListView.setEmptyView(tv);
+					}
+
+					pullToRefreshListView.setPullLabel("没有更多数据", Mode.PULL_FROM_END);
+					pullToRefreshListView.setReleaseLabel("没有更多数据", Mode.PULL_FROM_END);
+					pullToRefreshListView.setRefreshingLabel("没有更多数据", Mode.PULL_FROM_END);
+				} else {
+					isEnd = false;
+					pullToRefreshListView.setPullLabel("上拉刷新", Mode.PULL_FROM_END);
+					pullToRefreshListView.setReleaseLabel("放开以刷新", Mode.PULL_FROM_END);
+					pullToRefreshListView.setRefreshingLabel("正在载入", Mode.PULL_FROM_END);
+				}
+
+				if (isPullDown) {
+					pageIndex = 0;
+					adapter.removeAll();
+				}
+				pageIndex++;
+
+				for (int i = 0; i < result.size(); i++) {
+					adapter.addItem((ReturnMoneyDetailListModel) result.get(i));
+				}
+				adapter.notifyDataSetChanged();
+
+				pullToRefreshListView.onRefreshComplete();
+
+			}
+
+			@Override
+			protected List<ReturnMoneyDetailListModel> doExecute() throws ZYException, BizFailure {
+				// TODO Auto-generated method stub
+				if (isPullDown) {
+
+					return AccountBiz.getReturnMoneyDetailList(tenderId, tenderType, "0",
+							ExtraConfig.DEFAULT_PAGE_COUNT + "");
+				} else {
+					if (isEnd) {
+						return new ArrayList<ReturnMoneyDetailListModel>();
+					} else {
+						return AccountBiz.getReturnMoneyDetailList(tenderId, tenderType, pageIndex + "",
+								ExtraConfig.DEFAULT_PAGE_COUNT + "");
+					}
+				}
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				// TODO Auto-generated method stub
+				pullToRefreshListView.onRefreshComplete();
+			}
+		};
+
+		if (first) {
+			task.setWaitingView(getWaitingView());
+		}
+
+		task.execute();
+
+	}
+
+	class ReturnMoneyDetailAdapter extends BaseAdapter {
+
+		private List<ReturnMoneyDetailListModel> list = new ArrayList<ReturnMoneyDetailListModel>();
+		private Context context;
+
+		public ReturnMoneyDetailAdapter(Context context) {
+			// TODO Auto-generated constructor stub
+
+			this.context = context;
+		}
+
+		public void addItem(ReturnMoneyDetailListModel cellOptions) {
+			list.add(cellOptions);
+		}
+
+		public void removeAll() {
+			if (list != null && list.size() > 0) {
+				for (int i = list.size() - 1; i >= 0; i--) {
+					list.remove(i);
+				}
+			}
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return list == null ? 0 : list.size();
+		}
+
+		@Override
+		public ReturnMoneyDetailListModel getItem(int position) {
+			// TODO Auto-generated method stub
+			return list.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ReturnMoneyDetailListViewHolder viewHolder;
+
+			if (convertView == null) {
+
+				convertView = LayoutInflater.from(context).inflate(R.layout.item_listview_return_money_detail, parent,
+						false);
+				viewHolder = new ReturnMoneyDetailListViewHolder(convertView);
+				convertView.setTag(viewHolder);
+			} else {
+				viewHolder = (ReturnMoneyDetailListViewHolder) convertView.getTag();
+			}
+
+			/**
+			 * PRODUCTS_TITLE : e兴车贷-THK车贷082501期 RATE : 11.00 TENDER_AMOUNT :
+			 * 10000.00 PERIOD : 6个月 AWARD : 0.0 SUCCESS_DATE : 16/08/25
+			 * RECOVER_END_DATE : 17/02/25 REPAY_TYPE : 按月付息,到期还本 STATUS : 回款中
+			 */
+
+			// list设置数据
+			if (list.get(position).getType().equals("1")) {
+				// 逾期
+				viewHolder.iv_detail_type.setImageResource(R.drawable.return_money_detail_four);
+				viewHolder.ll_hide.setVisibility(View.VISIBLE);
+				viewHolder.tv_detail_data.setText(list.get(position).getData());
+				viewHolder.tv_detail_interest.setText(list.get(position).getInterest());
+				viewHolder.tv_detail_money.setText(list.get(position).getMoney());
+				viewHolder.tv_detail_out_day.setText(list.get(position).getOut_data());
+				viewHolder.tv_detail_out_interest.setText(list.get(position).getOut_interest());
+				viewHolder.tv_detail_out_interest_punishment.setText(list.get(position).getOut_interest_punishment());
+
+			} else {
+				// 未逾期
+
+				if (list.get(position).getRECOVER_FLG().equals("1")) {
+					// 已回款
+					viewHolder.iv_detail_type.setImageResource(R.drawable.return_money_detail_three);
+					viewHolder.ll_hide.setVisibility(View.GONE);
+					viewHolder.tv_detail_data.setText(list.get(position).getData());
+					viewHolder.tv_detail_interest.setText(list.get(position).getInterest());
+					viewHolder.tv_detail_money.setText(list.get(position).getMoney());
+				} else {
+					// 未回款
+					viewHolder.iv_detail_type.setImageResource(R.drawable.return_money_detail_five);
+					viewHolder.ll_hide.setVisibility(View.GONE);
+					viewHolder.tv_detail_data.setText(list.get(position).getData());
+					viewHolder.tv_detail_interest.setText(list.get(position).getInterest());
+					viewHolder.tv_detail_money.setText(list.get(position).getMoney());
+				}
+
+			}
+
+			return convertView;
+		}
+
+		class ReturnMoneyDetailListViewHolder {
+
+			ImageView iv_detail_type;// 已回款/逾期图片
+			TextView tv_detail_data;// 日期
+			TextView tv_detail_interest;// 利息
+			TextView tv_detail_money;// 本金
+			TextView tv_detail_out_day;// 逾期天数
+			TextView tv_detail_out_interest;// 逾期利息
+			TextView tv_detail_out_interest_punishment;// 逾期罚息
+			LinearLayout ll_hide;// 不是逾期会隐藏
+
+			public ReturnMoneyDetailListViewHolder(View itemView) {
+
+				iv_detail_type = (ImageView) itemView.findViewById(R.id.iv_item_return_money_detail_type);
+				tv_detail_data = (TextView) itemView.findViewById(R.id.tv_item_return_money_detail_data);
+				tv_detail_interest = (TextView) itemView.findViewById(R.id.tv_item_return_money_detail_interest);
+				tv_detail_money = (TextView) itemView.findViewById(R.id.tv_item_return_money_detail_money);
+				tv_detail_out_day = (TextView) itemView.findViewById(R.id.tv_item_return_money_detail_out_day);
+				tv_detail_out_interest = (TextView) itemView
+						.findViewById(R.id.tv_item_return_money_detail_out_interest);
+				tv_detail_out_interest_punishment = (TextView) itemView
+						.findViewById(R.id.tv_item_return_money_detail_out_interest_punishment);
+				ll_hide = (LinearLayout) itemView.findViewById(R.id.ll_hide);
+
+			}
+
+		}
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+
+		case R.id.iv_back:
+			// 返回
+			finish();
+			break;
+		case R.id.tv_return_money_one_pact:
+			// 查看合同
+			Intent intent = new Intent(this, ActivityWebView.class);
+			intent.putExtra("LINKURL", tenderId);
+			intent.putExtra(IntentExtraKey.WEB_VIEW_FROM, 3);
+			startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+}

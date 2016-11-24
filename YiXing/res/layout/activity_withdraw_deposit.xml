@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+    <!-- 提现 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/y10" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可提现金额"
+                android:textColor="@color/font_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_withdraw_amount_can_use"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x5"
+                android:text="--"
+                android:textColor="@color/text_blue"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/x5"
+                android:text="元"
+                android:textColor="@color/text_blue"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/y8"
+            android:layout_marginTop="@dimen/y2"
+            android:text="(当天充值金额不可提现)"
+            android:textColor="@color/text_blue"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x70"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x10"
+                android:gravity="right"
+                android:text="提现金额 : "
+                android:textColor="@color/font_black" />
+
+            <EditText
+                android:id="@+id/et_withdraw_amount"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/y25"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="6"
+                android:background="@drawable/edittext_white_background"
+                android:inputType="numberDecimal"
+                android:maxLength="8"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x5"
+                android:paddingRight="@dimen/x2"
+                android:paddingTop="@dimen/y5"
+                android:textColorHint="@color/font_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x20"
+                android:text="元"
+                android:textColor="@color/font_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y10"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/x70"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x10"
+                android:gravity="right"
+                android:text="验证码 : "
+                android:textColor="@color/font_black" />
+
+            <EditText
+                android:id="@+id/et_withdraw_verify"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/y25"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="6"
+                android:background="@drawable/edittext_white_background"
+                android:hint="请输入短信验证码"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x5"
+                android:paddingRight="@dimen/x2"
+                android:paddingTop="@dimen/y5"
+                android:textColorHint="@color/font_gray"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_withdraw_verify"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y22"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_orange_white_large_round"
+                android:gravity="center"
+                android:text="获取短信验证码"
+                android:textColor="@color/title_color_orange"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_withdraw_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@drawable/shape_orange_large_round"
+            android:text="提现"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/y5"
+        android:paddingLeft="@dimen/x10"
+        android:paddingTop="@dimen/y5"
+        android:text="提现记录"
+        android:textColor="@color/text_blue" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/text_blue" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:background="@color/auto_tender_record_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现信息"
+            android:textColor="@color/font_black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现金额 (元)"
+            android:textColor="@color/font_black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="到账金额 (元)"
+            android:textColor="@color/font_black" />
+    </LinearLayout>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:app="http://schemas.android.com/apk/res/com.wajr"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list_withdraw"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both" >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+</LinearLayout>

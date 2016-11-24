@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y200"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:background="@drawable/register_success"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/y20"
+            android:text="恭喜您 , 注册成功!"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+        <LinearLayout 
+            android:id="@+id/register_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+        
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请您先到"
+            android:textColor="@color/black"
+             />
+           <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电脑网页版开通存管账户"
+            android:textColor="@color/circle_orange"
+             />
+              <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=","
+            android:textColor="@color/circle_orange"
+             />
+            </LinearLayout>
+           <TextView
+               android:layout_below="@id/register_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="村官账户开通后，方可继续投资。"
+            android:textColor="@color/black"
+             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:layout_marginBottom="@dimen/y25"
+            android:layout_marginLeft="@dimen/x25"
+            android:layout_marginRight="@dimen/x25"
+            android:layout_marginTop="@dimen/y15"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/recharge_button_background"
+            android:gravity="center"
+            android:text="返回首页"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

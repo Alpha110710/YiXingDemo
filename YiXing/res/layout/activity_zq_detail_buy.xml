@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8A8A8"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x10"
+        android:paddingRight="@dimen/x10"
+        android:paddingTop="@dimen/y20" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="账户余额："
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/use_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="--元"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_blue_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:paddingTop="@dimen/y5"
+                android:text="充值"
+                android:textColor="@color/white" 
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/investment_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/y5"
+                android:text="投资金额："
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/investment_allmoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginTop="@dimen/y5"
+                android:background="@drawable/shape_blue_white_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:paddingTop="@dimen/y5"
+                android:text="全投"
+                android:textColor="@color/title_color_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_toLeftOf="@id/investment_allmoney"
+                android:layout_toRightOf="@id/investment_money"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/y20"
+                    android:text="请输入投资金额"
+                    android:textColor="@color/standard_red" 
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/edit_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:textColor="@color/font_black"
+                        android:textColorHint="@color/font_gray"
+                        android:paddingTop="@dimen/y5"
+                        android:paddingBottom="@dimen/y5"
+                         android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
+                        android:hint="只支持全额购买"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:text="元"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="@dimen/x10"
+                    android:background="@color/circle_gray" />
+
+                <TextView
+                    android:id="@+id/buy_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:text="折让金额--元" />
+
+                <TextView
+                    android:id="@+id/money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:text="实际应付--元 " />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y10"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预计收益："
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:text="--元"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="投资密码 :     "
+               android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/y2"
+                    android:paddingBottom="@dimen/y2"
+                    android:background="@null"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                     android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
+                    android:textColor="@color/font_black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+            </LinearLayout>
+
+            <TextView
+                  android:id="@+id/zq_forget_trade_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x28"
+                android:layout_marginRight="@dimen/x10"
+                android:paddingTop="@dimen/y3"
+                android:paddingBottom="@dimen/y3"
+                android:text="忘记投资密码?"
+                android:textColor="@color/title_color_orange" />
+        </LinearLayout>
+        
+
+        <LinearLayout
+            android:id="@+id/dxpassword_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y10"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定向密码："
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="@dimen/x120"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/dx_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:paddingLeft="@dimen/x5"
+                    android:textColor="@color/font_black"
+                    android:textColorHint="@color/font_gray"
+                     android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/x3"
+                    android:layout_marginRight="@dimen/x3"
+                    android:layout_marginTop="@dimen/y5"
+                    android:background="@color/circle_gray" />
+            </LinearLayout>
+        </LinearLayout>
+ <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="短信验证码 : "
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <EditText
+                     android:id="@+id/edit_sms_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/y2"
+                    android:paddingBottom="@dimen/y2"
+                    android:background="@null"
+                     android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="@color/font_black"
+                     android:cursorVisible="true"
+                        android:textCursorDrawable="@null"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/zq_forget_sms_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_orange_white_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x5"
+                android:paddingRight="@dimen/x5"
+                android:paddingTop="@dimen/y5"
+                android:text="获取短信验证码"
+                android:textColor="@color/title_color_orange" />
+        </LinearLayout>
+        
+        
+        
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35"
+            android:layout_marginBottom="@dimen/y20"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_marginTop="@dimen/y20"
+            android:background="@drawable/shape_orange_large_round"
+            android:text="立即购买"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+</LinearLayout>

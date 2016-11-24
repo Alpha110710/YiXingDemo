@@ -1,0 +1,281 @@
+package com.yixing.ui.account;
+
+import java.util.HashMap;
+
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler.Callback;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.system.text.ShortMessage;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.tencent.qzone.QZone;
+import cn.sharesdk.wechat.friends.Wechat;
+import cn.sharesdk.wechat.moments.WechatMoments;
+
+import com.mob.tools.utils.UIHandler;
+import com.yixing.R;
+import com.yixing.YixingConfig;
+import com.yixing.biz.AccountBiz;
+import com.yixing.biz.exception.BizFailure;
+import com.yixing.biz.exception.ZYException;
+import com.yixing.biz.task.BizDataAsyncTask;
+import com.yixing.model.InviteInfoModel;
+import com.yixing.ui.base.BaseActivity;
+
+public class ActivityInviteFriend extends BaseActivity implements OnClickListener, PlatformActionListener, Callback {
+
+	private TextView tv_title;
+	private ImageView iv_back;
+
+	private TextView inviteAmount;
+	private TextView inviteReward;
+	private TextView tvChat;
+	private TextView tvChatMoments;
+	private TextView tvQQ;
+	private TextView tvQqWeibo;
+	private TextView tvSinaWeibo;
+	private TextView tvShortMsg;
+	private TextView tvQqSpace;
+
+	private String link = "";
+	private InviteInfoModel inviteInfo;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_invitation_friend);
+		ShareSDK.initSDK(this);
+		init();
+
+	}
+
+	private void init() {
+
+		tv_title = (TextView) findViewById(R.id.tv_green_header_title);
+		iv_back = (ImageView) findViewById(R.id.iv_back);
+
+		inviteAmount = (TextView) findViewById(R.id.tv_invite_amount);
+		inviteReward = (TextView) findViewById(R.id.tv_invite_reward);
+
+		tvChat = (TextView) findViewById(R.id.tv_chat);
+		tvChat.setOnClickListener(this);
+		tvChatMoments = (TextView) findViewById(R.id.tv_chat_moments);
+		tvChatMoments.setOnClickListener(this);
+		tvQQ = (TextView) findViewById(R.id.tv_qq);
+		tvQQ.setOnClickListener(this);
+		tvQqWeibo = (TextView) findViewById(R.id.tv_qq_weibo);
+		tvQqWeibo.setOnClickListener(this);
+		tvSinaWeibo = (TextView) findViewById(R.id.tv_sina_weibo);
+		tvSinaWeibo.setOnClickListener(this);
+		tvShortMsg = (TextView) findViewById(R.id.tv_short_message);
+		tvShortMsg.setOnClickListener(this);
+		tvQqSpace = (TextView) findViewById(R.id.tv_qq_space);
+		tvQqSpace.setOnClickListener(this);
+
+		iv_back.setOnClickListener(this);
+		tv_title.setText("邀请好友");
+
+		getInviteInfo();
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		ShareParams sp = new ShareParams();
+		Platform plat = null;
+		Resources res = this.getResources();
+		Bitmap bmp = BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
+		switch (v.getId()) {
+
+		case R.id.tv_chat:
+			//sp.setText("e兴金融" + "" + link);
+			sp.setShareType(Platform.SHARE_WEBPAGE);
+			sp.setTitle("e兴金融");
+			sp.setUrl(link);
+			//sp.setImageData(bmp);
+			sp.setImageUrl(YixingConfig.WS_BASE_DOMAIN+"iloanWebService/image/share.png");
+			sp.setText("e兴金融最专业的P2P服务平台。");
+			plat = ShareSDK.getPlatform(Wechat.NAME);
+			plat.setPlatformActionListener(this);
+			plat.share(sp);
+			break;
+		case R.id.tv_chat_moments:
+			sp.setShareType(Platform.SHARE_WEBPAGE);
+			sp.setTitle("e兴金融");
+			sp.setUrl(link);
+			//sp.setImageData(bmp);
+			sp.setImageUrl(YixingConfig.WS_BASE_DOMAIN+"iloanWebService/image/share.png");
+			plat = ShareSDK.getPlatform(WechatMoments.NAME);
+			plat.setPlatformActionListener(this);
+			plat.share(sp);
+			break;
+		case R.id.tv_qq:
+			sp.setTitle("e兴金融");
+			sp.setTitleUrl(link);
+			sp.setText("e兴金融最专业的P2P服务平台。");
+			sp.setImageUrl(YixingConfig.WS_BASE_DOMAIN+"iloanWebService/image/share.png");
+			plat = ShareSDK.getPlatform(QQ.NAME);
+			plat.setPlatformActionListener(this);
+			plat.share(sp);
+			break;
+	/*	case R.id.tv_qq_weibo:
+			sp.setText("e兴金融最专业的P2P服务平台。");
+			sp.setImageUrl("http://www.bbkin.net/E108_WebService/images/share_img.png");
+			plat = ShareSDK.getPlatform(TencentWeibo.NAME);
+			plat.setPlatformActionListener(this);
+			plat.share(sp);
+			break;*/
+		case R.id.tv_sina_weibo:
+			sp.setText("e兴金融最专业的P2P服务平台。" + "" + link);
+			sp.setImageUrl(YixingConfig.WS_BASE_DOMAIN+"iloanWebService/image/share.png");
+			plat = ShareSDK.getPlatform(SinaWeibo.NAME);
+			plat.setPlatformActionListener(this); // 设置分享事件回调
+			// 执行图文分享
+			plat.share(sp);
+			break;
+		case R.id.tv_short_message:
+			//sp.setAddress(link);
+			sp.setTitle("e兴金融");
+			sp.setText("e兴金融最专业的P2P服务平台。");
+			plat = ShareSDK.getPlatform(ShortMessage.NAME);
+			plat.setPlatformActionListener(this); // 设置分享事件回调
+			// 执行图文分享
+			plat.share(sp);
+			break;
+		case R.id.tv_qq_space:
+			sp.setTitle("e兴金融");
+			sp.setTitleUrl(link);
+			sp.setText("e兴金融最专业的P2P服务平台。");
+			sp.setImageUrl(YixingConfig.WS_BASE_DOMAIN+"iloanWebService/image/share.png");
+			sp.setSite("e兴金融");
+			sp.setSiteUrl("http://new.xhx-exjr.com/");
+			plat = ShareSDK.getPlatform(QZone.NAME);
+			plat.setPlatformActionListener(this); // 设置分享事件回调
+			// 执行图文分享
+			plat.share(sp);
+			break;
+
+		case R.id.iv_back:
+			//退出
+			finish();
+			break;
+
+		}
+
+	}
+
+	@Override
+	public void onCancel(Platform plat, int action) {
+		// TODO Auto-generated method stub
+		Message msg = new Message();
+		msg.arg1 = 3;
+		msg.arg2 = action;
+		msg.obj = plat;
+		UIHandler.sendMessage(msg, this);
+
+	}
+
+	@Override
+	public void onComplete(Platform plat, int action, HashMap<String, Object> arg2) {
+		// TODO Auto-generated method stub
+
+		Message msg = new Message();
+		msg.arg1 = 1;
+		msg.arg2 = action;
+		msg.obj = plat;
+		UIHandler.sendMessage(msg, this);
+	}
+
+	@Override
+	public void onError(Platform plat, int action, Throwable t) {
+		// TODO Auto-generated method stub
+		t.printStackTrace();
+
+		Message msg = new Message();
+		msg.arg1 = 2;
+		msg.arg2 = action;
+		msg.obj = t;
+		UIHandler.sendMessage(msg, this);
+	}
+
+	@Override
+	public boolean handleMessage(Message msg) {
+		// String text = MainActivity.actionToString(msg.arg2);
+		String text = "";
+		switch (msg.arg1) {
+		case 1: {
+			// 成功
+			Platform plat = (Platform) msg.obj;
+			// text = plat.getName() + "share completed ";
+			text = "分享成功 ";
+		}
+			break;
+		case 2: {
+			// 失败
+			if ("WechatClientNotExistException".equals(msg.obj.getClass().getSimpleName())) {
+				text = this.getString(R.string.wechat_client_inavailable);
+			} else if ("WechatTimelineNotSupportedException".equals(msg.obj.getClass().getSimpleName())) {
+				text = this.getString(R.string.wechat_client_inavailable);
+			} else {
+				text = this.getString(R.string.share_failed);
+			}
+		}
+			break;
+		case 3: {
+			// 取消
+			Platform plat = (Platform) msg.obj;
+			// text = plat.getName() + " canceled ";
+			text = "取消分享 ";
+		}
+			break;
+		}
+
+		Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+		return false;
+	}
+
+	BizDataAsyncTask<InviteInfoModel> getInviteInfoTask;
+
+	private void getInviteInfo() {
+		getInviteInfoTask = new BizDataAsyncTask<InviteInfoModel>(getWaitingView()) {
+
+			@Override
+			protected void onExecuteSucceeded(InviteInfoModel result) {
+
+				inviteInfo = result;
+				inviteAmount.setText(inviteInfo.getFriendCount());
+				inviteReward.setText(inviteInfo.getReceivedAmount());
+				link = inviteInfo.getInviteFriendUrl();
+
+			}
+
+			@Override
+			protected InviteInfoModel doExecute() throws ZYException, BizFailure {
+
+				return AccountBiz.getInviteInfo();
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				// TODO Auto-generated method stub
+
+			}
+		};
+		getInviteInfoTask.execute();
+	}
+
+}

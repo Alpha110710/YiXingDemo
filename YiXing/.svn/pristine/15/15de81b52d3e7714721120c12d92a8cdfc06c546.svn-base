@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/y10"
+        android:paddingTop="@dimen/y10"
+        android:src="@drawable/contact_us_one" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:layout_marginTop="@dimen/y10"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/y20"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@drawable/contact_us_two" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="客服专线 :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:background="@drawable/login_button_background"
+            android:paddingBottom="@dimen/x3"
+            android:paddingLeft="@dimen/x7"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x3"
+            android:text="400-079-0903"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/y20"
+            android:layout_marginLeft="@dimen/x15"
+            android:src="@drawable/contact_us_three" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="工作时间 :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:paddingBottom="@dimen/x3"
+            android:paddingRight="@dimen/x7"
+            android:paddingTop="@dimen/x3"
+            android:text="9:00-22:00" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/y20"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y10"
+            android:src="@drawable/contact_us_four" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:text="平台总部地址 : 成都桐梓林北路2号凯莱帝景A座27-C" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x18"
+            android:layout_height="@dimen/y20"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y10"
+            android:src="@drawable/contact_us_four" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginTop="@dimen/y10"
+            android:text="川南区域乐山总部地址 : 乐山市市中区柏杨西路868号盘龙银座1幢6楼" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

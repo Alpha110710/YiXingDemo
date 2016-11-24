@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">e兴金融</string>
+    <string name="double_tap_to_exit">再按一次退出程序</string>
+    <string name="msg_opreation_timeout">与服务器连接超时，请稍后重试</string>
+    <string name="network_not_available">无法连接到网络，请检查网络配置</string>
+    <string name="auth_expire">您的用户授权已过期，请重新登录</string>
+    <string name="opreation_failure">服务器访问异常，请稍后重试</string>
+    <string name="find_getverifycode">获取短信验证码</string>
+    <string name="msg_new_phone_num_empty">请输入新手机号码</string>
+    <string name="msg_verify_code_empty">请输入验证码</string>
+    <string name="msg_old_login_pwd_empty">请输入原登录密码</string>
+    <string name="msg_new_login_pwd_empty">请输入新登录密码</string>
+    <string name="msg_repeat_new_login_pwd_empty">请再次输入新登录密码</string>
+    <string name="msg_different_new_login_pwd">两次输入的密码不一致，请重新输入</string>
+    <string name="msg_old_pay_pwd_empty">请输入原交易密码</string>
+    <string name="msg_new_pay_pwd_empty">请输入新交易密码</string>
+    <string name="msg_repeat_new_payment_pwd_empty">请再次输入新交易密码</string>
+    <string name="msg_getcash_input_money">请输入提现金额</string>
+    <string name="msg_getcash_input_pwd">请输入交易密码</string>
+    <string name="msg_charge_input_money">请输入大于50的金额</string>
+    <string name="msg_phone_number">请输入您的手机号码</string>
+     
+
+    <string name="plat_intro">    “e兴金融”由乐山亚鑫实业有限公司国有控股，深圳新鸿兴金融服务有限责任公司负责具体运营，注册资本5000万元，是四川省乐山市首家国资控股的互联网金融服务平台。以“丰富金融创新、发展普惠金融、支持实体经济、促进经济转型”为宗旨，秉承“诚信赢天下”的经营理念，本着服务"小微"，服务"三农"的原则，与大型国企、其他金融机构密切合作，依靠安全稳定的互联网平台，为政府项目、银行、中小企业等企事业单位及个人提供优质的互联网金融服务，促进经济发展。\n e兴金融从单一的P2P平台覆盖到各领域，致力于打造政府PPP项目、农村金融、消费金融、股权投资、众筹、基金、信托、保险、电商及资管等一站式大型综合性金融服务平台。</string>
+     <string name="msg_pwd_pattern_check">密码是6-20个字符（字母、数字、符号的组合），不能单独使用字母、数字或符号!</string>
+    <string name="msg_password_length_check">密码长度必须是6-20位</string>
+    
+    
+   <!-- 分享字串 --> 
+    <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="share_failed">分享失败</string>
+    
+    
+     <string name="log_out">退出登录</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="prompt">提示</string>
+    
+     <string name="menu_lock">Lock</string>
+    <string name="menu_unlock">Unlock</string>
+    
+    
+    <string name="new_version_detected">检测到新版本 </string>
+    <string name="download_background">后台下载</string>
+    <string name="remind_me_later">下次再说</string>
+    
+</resources>

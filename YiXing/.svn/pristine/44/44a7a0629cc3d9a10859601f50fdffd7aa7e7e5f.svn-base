@@ -1,0 +1,155 @@
+package com.yixing.model;
+
+import com.google.gson.annotations.SerializedName;
+
+public class ReturnMoneyDetailModelTwo extends BaseModel{
+
+    /**
+     * PRODUCTS_TITLE : 银行保荐-投资理财计划A0823TG-002
+     * TRANSFER_CONTRACT_ID :
+     * RATE : 9.00
+     * TENDER_AMOUNT_TRANS : 4000.00
+     * ACTUAL_AMOUNT : 3954.84
+     * FAIR_VALUE : 4004.84
+     * SUCCESS_DATE : 16/08/23
+     * RECOVER_END_DATE : 16/09/24
+     * REPAY_TYPE : 按月付息,到期还本
+     * STATUS : 回款中
+     */
+		@SerializedName("PRODUCTS_TITLE")
+        private String PRODUCTS_TITLE;
+		
+		@SerializedName("TRANSFER_CONTRACT_ID")
+        private String TRANSFER_CONTRACT_ID;
+		
+		@SerializedName("RATE")
+        private String RATE;
+		
+		@SerializedName("TENDER_AMOUNT_TRANS")
+        private String TENDER_AMOUNT_TRANS;
+		
+		@SerializedName("ACTUAL_AMOUNT")
+        private String ACTUAL_AMOUNT;
+		
+		@SerializedName("FAIR_VALUE")
+        private String FAIR_VALUE;
+		
+		@SerializedName("SUCCESS_DATE")
+        private String SUCCESS_DATE;
+		
+		@SerializedName("RECOVER_END_DATE")
+        private String RECOVER_END_DATE;
+		
+		@SerializedName("REPAY_TYPE")
+        private String REPAY_TYPE;
+		
+		@SerializedName("STATUS")
+        private String STATUS;
+		
+		@SerializedName("FINANCE_PERIOD_FORMAT")
+		private String FINANCE_PERIOD_FORMAT;//日期
+		
+		@SerializedName("TENDER_AMOUNT_TRANS_UNIT")
+		private String TENDER_AMOUNT_TRANS_UNIT;//债权金额 单位
+
+
+		
+		
+		
+        public String getTENDER_AMOUNT_TRANS_UNIT() {
+			return TENDER_AMOUNT_TRANS_UNIT;
+		}
+
+		public void setTENDER_AMOUNT_TRANS_UNIT(String tENDER_AMOUNT_TRANS_UNIT) {
+			TENDER_AMOUNT_TRANS_UNIT = tENDER_AMOUNT_TRANS_UNIT;
+		}
+
+		public String getFINANCE_PERIOD_FORMAT() {
+			return FINANCE_PERIOD_FORMAT;
+		}
+
+		public void setFINANCE_PERIOD_FORMAT(String fINANCE_PERIOD_FORMAT) {
+			FINANCE_PERIOD_FORMAT = fINANCE_PERIOD_FORMAT;
+		}
+
+		public String getPRODUCTS_TITLE() {
+            return PRODUCTS_TITLE;
+        }
+
+        public void setPRODUCTS_TITLE(String PRODUCTS_TITLE) {
+            this.PRODUCTS_TITLE = PRODUCTS_TITLE;
+        }
+
+        public String getTRANSFER_CONTRACT_ID() {
+            return TRANSFER_CONTRACT_ID;
+        }
+
+        public void setTRANSFER_CONTRACT_ID(String TRANSFER_CONTRACT_ID) {
+            this.TRANSFER_CONTRACT_ID = TRANSFER_CONTRACT_ID;
+        }
+
+        public String getRATE() {
+            return RATE;
+        }
+
+        public void setRATE(String RATE) {
+            this.RATE = RATE;
+        }
+
+        public String getTENDER_AMOUNT_TRANS() {
+            return TENDER_AMOUNT_TRANS;
+        }
+
+        public void setTENDER_AMOUNT_TRANS(String TENDER_AMOUNT_TRANS) {
+            this.TENDER_AMOUNT_TRANS = TENDER_AMOUNT_TRANS;
+        }
+
+        public String getACTUAL_AMOUNT() {
+            return ACTUAL_AMOUNT;
+        }
+
+        public void setACTUAL_AMOUNT(String ACTUAL_AMOUNT) {
+            this.ACTUAL_AMOUNT = ACTUAL_AMOUNT;
+        }
+
+        public String getFAIR_VALUE() {
+            return FAIR_VALUE;
+        }
+
+        public void setFAIR_VALUE(String FAIR_VALUE) {
+            this.FAIR_VALUE = FAIR_VALUE;
+        }
+
+        public String getSUCCESS_DATE() {
+            return SUCCESS_DATE;
+        }
+
+        public void setSUCCESS_DATE(String SUCCESS_DATE) {
+            this.SUCCESS_DATE = SUCCESS_DATE;
+        }
+
+        public String getRECOVER_END_DATE() {
+            return RECOVER_END_DATE;
+        }
+
+        public void setRECOVER_END_DATE(String RECOVER_END_DATE) {
+            this.RECOVER_END_DATE = RECOVER_END_DATE;
+        }
+
+        public String getREPAY_TYPE() {
+            return REPAY_TYPE;
+        }
+
+        public void setREPAY_TYPE(String REPAY_TYPE) {
+            this.REPAY_TYPE = REPAY_TYPE;
+        }
+
+        public String getSTATUS() {
+            return STATUS;
+        }
+
+        public void setSTATUS(String STATUS) {
+            this.STATUS = STATUS;
+        }
+
+}

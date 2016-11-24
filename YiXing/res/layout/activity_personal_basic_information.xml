@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/head_normal"
+        layout="@layout/header_normal_orange" />
+    <!-- 个人基本信息 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/head_normal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_personal_info_head_next"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y40"
+                android:background="@color/white" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/x10"
+                    android:text="头像"
+                    android:textColor="@color/font_black" />
+
+                <ImageView
+                    android:id="@+id/iv_personal_info_head_go_next"
+                    android:layout_width="@dimen/x6"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:src="@drawable/go_next" />
+
+                <com.yixing.ui.widget.CircleImageView
+                    android:id="@+id/iv_personal_info_head_icon"
+                    android:layout_width="@dimen/x40"
+                    android:layout_height="@dimen/x40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_toLeftOf="@id/iv_personal_info_head_go_next"
+                    android:src="@drawable/my_account5" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="昵称"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:text="1234564fdas"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="真实姓名"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_real_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:gravity="center_vertical|right"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="身份证号码"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_id_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:gravity="center_vertical|right"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="手机号码"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_tele_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:gravity="center_vertical|right"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="电子邮箱"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_email_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:gravity="center_vertical|right"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="生日"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_sex"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="性别"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_education"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="学历"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_xueli"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_qq"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="QQ"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_qq"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_matrimony_type"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="婚姻状况"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_hunyin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_industry"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="所属行业"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_hangye"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:text=""
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider" />
+
+            <LinearLayout
+                android:id="@+id/rl_personal_monthly_income"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="月均收入"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_shouru"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/bg_gray_divider"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y35"
+                android:background="@color/white"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:layout_marginRight="@dimen/x5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="地址"
+                    android:textColor="@color/font_black" />
+
+                <TextView
+                    android:id="@+id/tv_personal_info_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x10"
+                    android:drawablePadding="@dimen/x10"
+                    android:drawableRight="@drawable/go_next"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/font_black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y40" />
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/bg_gray_divider" />
+
+        <Button
+            android:id="@+id/btn_personal_info_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:background="@drawable/shape_orange_large_round"
+            android:text="保存信息"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,681 @@
+package com.yixing.ui.investment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.yixing.ExtraConfig;
+import com.yixing.R;
+import com.yixing.YixingApp;
+import com.yixing.biz.InvestmentBiz;
+import com.yixing.biz.exception.BizFailure;
+import com.yixing.biz.exception.ZYException;
+import com.yixing.biz.task.BizDataAsyncTask;
+import com.yixing.dialog.PromptlyInvestmentDialog;
+import com.yixing.dialog.RedSelectDialog;
+import com.yixing.dialog.TicketSelectDialog;
+import com.yixing.model.AlllMoneyModel;
+import com.yixing.model.InvestmentDetaiTwolModel;
+import com.yixing.model.MyAccountModel;
+import com.yixing.model.RedPacketModel;
+import com.yixing.model.TicketModel;
+import com.yixing.ui.account.ActivityFindDealPwd;
+import com.yixing.ui.account.ActivityRecharge;
+import com.yixing.ui.base.BaseActivity;
+import com.yixing.ui.widget.WaitingView;
+import com.yixing.utils.android.DialogInterface;
+import com.yixing.utils.java.AlertUtil;
+import com.yixing.utils.java.StringUtil;
+
+public class InvestmentDetailTwoActivity extends BaseActivity implements
+		OnClickListener {
+	private String productId;// 标的唯一id用于投资使用
+	InvestmentDetaiTwolModel investmentDetailModel;
+	/**
+	 * 账户余额
+	 */
+	private TextView user_Money;
+	/**
+	 * 最大投资金额
+	 */
+	private TextView investment_Max_Money;
+	/**
+	 * 最小投资金额
+	 */
+	private EditText investment_Min_Money;
+
+	/**
+	 * 红包个数
+	 */
+	private String myRed_Num;
+	/**
+	 * 加息卷个数
+	 */
+	private String my_Ticket;
+	/**
+	 * 预计收益
+	 */
+	private LinearLayout layout;
+
+	private TextView my_income;
+	private EditText edit_password;// 交易密码
+	private EditText edit_sms_code;// 短信验证码
+	private TextView pay;// 充值
+	private TextView all_Investment;// 全投
+
+	private TextView redpacket_num;// 红包个数
+	private TextView redpacket;// 红包个数（选择）
+	private TextView ticket_num;// 加息券个数
+	private TextView ticket;// 加息券个数（选择）
+
+	private LinearLayout ll_redbag ;
+	private LinearLayout ll_ticket ;
+	
+	// 红包显示隐藏
+	private LinearLayout layout_Red1;
+	private LinearLayout layout_Red2;
+	// layout_red2里面的
+	private TextView my_red_packet;
+	private TextView select_red_packet;
+
+	// 加息券显示隐藏
+	private LinearLayout layout_Ticket1;
+	private LinearLayout layout_Ticket2;
+	// layout_Ticket2里面的
+	private TextView my_ticket;
+	private TextView select_my_ticket;
+
+	private TextView forget_password;// 忘记交易密码
+	private TextView get_sms_code;// 获取短信验证码
+
+	private EditText edit_dx_password;// 定向密码
+
+	private LinearLayout investment_password_type;// 根据标的类型判断是否需要定向密码
+
+	public RedPacketModel Red_Models;// 选择的红包对应的models里面的值
+	public TicketModel ticket_Models;// 加息券对应的model值
+	private String SMS_CODE;// 从接口获取的短信验证码code
+	private boolean type = false;// 判断是否点击了短信验证码
+	private Button submit;// 立即投资
+	int i = 120;// 设置重新获取验证码的时间为60秒
+	Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 1:
+				i--;
+				if (i == 0) {
+					get_sms_code.setClickable(true);
+					get_sms_code.setText("获取短信验证码");
+					i = 60;
+				} else {
+					get_sms_code.setText("重新获取" + i);
+					handler.sendEmptyMessageDelayed(1, 1000);
+				}
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
+
+	private String mEditValue = "";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_investment_detail_two);
+		initView();
+		setTitle("投资详情");
+		productId = getIntent().getStringExtra("productId");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getInvestmentDetailTwo(true);
+	}
+
+	/**
+	 * 初始化
+	 */
+	private void initView() {
+		investment_password_type = (LinearLayout) findViewById(R.id.investment_password_type);
+		edit_dx_password = (EditText) findViewById(R.id.edit_dx_password);
+		submit = (Button) findViewById(R.id.submit);
+		submit.setOnClickListener(this);
+		user_Money = (TextView) findViewById(R.id.my_money);
+		investment_Max_Money = (TextView) findViewById(R.id.investment_max_money);
+		investment_Min_Money = (EditText) findViewById(R.id.edit_input_money);
+		// 判断edittext得到焦点还是失去焦点状态
+		investment_Min_Money
+				.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+					@Override
+					public void onFocusChange(View v, boolean hasFocus) {
+						if (!hasFocus) {// 失去焦点
+							// 获取收益（接口）
+							if (!mEditValue.equals((investment_Min_Money
+									.getEditableText().toString().trim()))) {
+								mEditValue = investment_Min_Money
+										.getEditableText().toString().trim();
+
+								ticket_Models = null;
+								Red_Models = null;
+
+								if (StringUtil.isEmpty(mEditValue)) {
+									my_income.setText("0.0");
+								} else {
+									getInComeData("", true);
+								}
+							}
+						}
+					}
+				});
+		layout = (LinearLayout) findViewById(R.id.layout);
+		layout.setOnTouchListener(new OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				layout.setFocusable(true);
+				layout.setFocusableInTouchMode(true);
+				layout.requestFocus();
+
+				return false;
+			}
+		});
+		my_income = (TextView) findViewById(R.id.my_income);
+		edit_password = (EditText) findViewById(R.id.edit_password);
+		edit_sms_code = (EditText) findViewById(R.id.edit_sms_code);
+
+		redpacket_num = (TextView) findViewById(R.id.redpacket_num);
+		redpacket = (TextView) findViewById(R.id.redpacket);
+		ticket_num = (TextView) findViewById(R.id.ticket_num);
+		ticket = (TextView) findViewById(R.id.ticket);
+		redpacket.setOnClickListener(this);
+		ticket.setOnClickListener(this);
+
+		
+		ll_redbag =  (LinearLayout) findViewById(R.id.ll_redbag);
+		ll_ticket =  (LinearLayout) findViewById(R.id.ll_ticket);
+		
+		layout_Red1 = (LinearLayout) findViewById(R.id.layout_red1);
+		layout_Red2 = (LinearLayout) findViewById(R.id.layout_red2);
+
+		my_red_packet = (TextView) findViewById(R.id.my_red_packet);
+		select_red_packet = (TextView) findViewById(R.id.select_red_packet);
+		select_red_packet.setOnClickListener(this);
+
+		layout_Ticket1 = (LinearLayout) findViewById(R.id.layout_ticket1);
+		layout_Ticket2 = (LinearLayout) findViewById(R.id.layout_ticket2);
+
+		my_ticket = (TextView) findViewById(R.id.my_ticket);
+		select_my_ticket = (TextView) findViewById(R.id.select_my_ticket);
+		select_my_ticket.setOnClickListener(this);
+
+		forget_password = (TextView) findViewById(R.id.forget_password);
+		get_sms_code = (TextView) findViewById(R.id.get_sms_code);
+		forget_password.setOnClickListener(this);
+		get_sms_code.setOnClickListener(this);
+
+		pay = (TextView) findViewById(R.id.pay);
+		all_Investment = (TextView) findViewById(R.id.all_Investment);
+		pay.setOnClickListener(this);
+		all_Investment.setOnClickListener(this);
+	}
+
+	private BizDataAsyncTask<InvestmentDetaiTwolModel> getInvestmentDetailTwo;
+
+	/**
+	 * 进入页面获取数据
+	 */
+	private void getInvestmentDetailTwo(final boolean isFirst) {
+		getInvestmentDetailTwo = new BizDataAsyncTask<InvestmentDetaiTwolModel>() {
+
+			@Override
+			protected void onExecuteSucceeded(InvestmentDetaiTwolModel result) {
+				investmentDetailModel = result;
+				getData();
+			}
+
+			@Override
+			protected InvestmentDetaiTwolModel doExecute() throws ZYException,
+					BizFailure {
+				return InvestmentBiz.getDataTwo(productId);
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				if (!StringUtil.isEmpty(error)) {
+					AlertUtil.t(InvestmentDetailTwoActivity.this, error);
+				}
+
+			}
+		};
+		if (isFirst) {
+			getInvestmentDetailTwo.setWaitingView(getWaitingView());
+		}
+
+		getInvestmentDetailTwo.execute();
+	}
+
+	/**
+	 * 绑定数值
+	 */
+	private void getData() {
+		if ("1".equals(investmentDetailModel.getType()))
+			investment_password_type.setVisibility(View.VISIBLE);
+		user_Money.setText(investmentDetailModel.getUser_Money());
+		investment_Min_Money.setHint("最小投资金额"
+				+ investmentDetailModel.getInvestment_Min_Money() + "元");
+		if (!"0.00".equals(investmentDetailModel.getInvestment_Max_Money())) {
+			investment_Max_Money.setText("最大投资金额"
+					+ investmentDetailModel.getInvestment_Max_Money() + "元");
+		} else {
+			investment_Max_Money.setText("最大投资金额不限");
+		}
+		my_income.setText("0.0");
+		
+		if(!"0".equals(investmentDetailModel.getMyRed_Num())){
+			ll_redbag.setVisibility(View.VISIBLE);
+			redpacket_num.setText(investmentDetailModel.getMyRed_Num());
+		}
+		if(!"0".equals(investmentDetailModel.getMy_Ticket())){
+			ll_ticket.setVisibility(View.VISIBLE);
+			ticket_num.setText(investmentDetailModel.getMy_Ticket());
+		}
+		
+
+		if ("0".equals(investmentDetailModel.getExtension())) {
+			pay.setVisibility(View.VISIBLE);
+		}
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.all_Investment:// 全投
+			// if (ticket_Models == null)
+			getAllMoney("");
+			/*
+			 * else getAllMoney(ticket_Models.getId());
+			 */
+			break;
+		case R.id.pay:// 充值
+			if (investmentDetailModel != null) {
+				MyAccountModel model = new MyAccountModel();
+				model.setBalance(investmentDetailModel.getUser_Money());
+				model.setPhoneNumber(investmentDetailModel.getPhone());
+				Intent intentAccount = new Intent(
+						InvestmentDetailTwoActivity.this,
+						ActivityRecharge.class);
+				intentAccount.putExtra(ExtraConfig.IntentExtraKey.MY_ACCOUNT,
+						model);
+				startActivity(intentAccount);
+			}
+			// AlertUtil.t(InvestmentDetailTwoActivity.this, "跳转到充值界面");
+			break;
+		case R.id.ticket:// 刚进入的时候选择加息券
+			if (!"".equals(investment_Min_Money.getText().toString().trim())) {
+				ticket.setFocusable(true);
+				ticket.setFocusableInTouchMode(true);
+				ticket.requestFocus();
+
+				getTicketDialog();
+			} else
+				AlertUtil.t(InvestmentDetailTwoActivity.this, "请输入金额后选择加息券");
+			break;
+		case R.id.select_my_ticket:// 选择其他加息券
+			if (!"".equals(investment_Min_Money.getText().toString().trim())) {
+				select_my_ticket.setFocusable(true);
+				select_my_ticket.setFocusableInTouchMode(true);
+				select_my_ticket.requestFocus();
+				getTicketDialog();
+			} else
+				AlertUtil.t(InvestmentDetailTwoActivity.this, "请输入金额后选择加息券");
+			break;
+		case R.id.redpacket:// 刚进入的时候选择红包
+			if (!"".equals(investment_Min_Money.getText().toString().trim())) {
+				redpacket.setFocusable(true);
+				redpacket.setFocusableInTouchMode(true);
+				redpacket.requestFocus();
+				getRedPacketDialog();
+			} else
+				AlertUtil.t(InvestmentDetailTwoActivity.this, "请输入金额后选择红包");
+			break;
+		case R.id.select_red_packet:// 进入红包
+			if (!"".equals(investment_Min_Money.getText().toString().trim())) {
+				select_red_packet.setFocusable(true);
+				select_red_packet.setFocusableInTouchMode(true);
+				select_red_packet.requestFocus();
+				getRedPacketDialog();
+			} else
+				AlertUtil.t(InvestmentDetailTwoActivity.this, "请输入金额后选择红包");
+			break;
+		case R.id.forget_password:// 忘记交易密码
+			if (investmentDetailModel != null) {
+				Intent intent = new Intent(InvestmentDetailTwoActivity.this,
+						ActivityFindDealPwd.class);
+				intent.putExtra(ExtraConfig.IntentExtraKey.ACCOUNT_TELE_NUM,
+						investmentDetailModel.getPhone());
+				startActivity(intent);
+			}
+
+			// AlertUtil.t(InvestmentDetailTwoActivity.this, "忘记交易密码");
+			break;
+		case R.id.get_sms_code:// 获取短信验证码
+			// 获取短信验证接口
+			getVertifyCodeForModifyPhone();
+			break;
+		case R.id.submit:// 立即投资
+			getSubmitCheck();
+			break;
+		default:
+			break;
+		}
+	}
+
+	/***
+	 * 判断输入框的输入是否有为null
+	 */
+	private void getSubmitCheck() {
+		String code = edit_sms_code.getText().toString().trim();
+		// check
+		if (!"".equals(investment_Min_Money.getText().toString().trim())
+				&& !"".equals(edit_password.getText().toString().trim())
+				&& !"".equals(code)) {
+			// 判断定向密码是否需要
+			if ("1".equals(investmentDetailModel.getType())) {
+				if (!"".equals(edit_dx_password.getText().toString().trim())) {
+					getCheck();// 判断红包，加息券model是否为空
+				} else {
+					AlertUtil.t(InvestmentDetailTwoActivity.this, "请填写完整信息后投资");
+				}
+			} else {
+				getCheck();// 判断红包，加息券model是否为空
+			}
+		} else {
+			AlertUtil.t(InvestmentDetailTwoActivity.this, "请填写完整信息后投资");
+		}
+	}
+
+	/***
+	 * 判断红包加息券是否为空
+	 */
+	private void getCheck() {
+		if (Red_Models == null && ticket_Models == null)
+			promptlyInvestment("", "", "", "");
+		else if (Red_Models == null)
+			promptlyInvestment("", "", ticket_Models.getId(),
+					ticket_Models.getRate());
+		else if (ticket_Models == null)
+			promptlyInvestment(Red_Models.getId(), Red_Models.getRed_Money(),
+					"", "");
+		else
+			promptlyInvestment(Red_Models.getId(), Red_Models.getRed_Money(),
+					ticket_Models.getId(), ticket_Models.getRate());
+	}
+
+	/***
+	 * 全投资接口
+	 */
+	private BizDataAsyncTask<AlllMoneyModel> getAllMoney;
+
+	private void getAllMoney(final String rateId) {
+		getAllMoney = new BizDataAsyncTask<AlllMoneyModel>(getWaitingView()) {
+
+			@Override
+			protected void onExecuteSucceeded(AlllMoneyModel result) {
+				investment_Min_Money.setText(result.getAllMoney());
+				my_income.setText(result.getExpectedInterest());
+				mEditValue = result.getAllMoney() ;
+
+				Red_Models = null;
+				layout_Red2.setVisibility(View.GONE);
+				layout_Red1.setVisibility(View.VISIBLE);
+
+				ticket_Models = null;
+				layout_Ticket2.setVisibility(View.GONE);
+				layout_Ticket1.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			protected AlllMoneyModel doExecute() throws ZYException, BizFailure {
+				return InvestmentBiz.getAllMoney(productId, rateId);// token
+																	// 标id，加息券id
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				if (!StringUtil.isEmpty(error)) {
+					AlertUtil.t(InvestmentDetailTwoActivity.this, error);
+				}
+
+			}
+		};
+		// if (isFirst) {
+		// getVertifyCodeForModifyPhone.setWaitingView(getWaitingView());
+		// }
+
+		getAllMoney.execute();
+	}
+
+	/**
+	 * 获取短信验证码接口
+	 */
+	private BizDataAsyncTask<String> getVertifyCodeForModifyPhone;
+
+	private void getVertifyCodeForModifyPhone() {
+		getVertifyCodeForModifyPhone = new BizDataAsyncTask<String>() {
+
+			@Override
+			protected void onExecuteSucceeded(String result) {
+				AlertUtil
+						.t(InvestmentDetailTwoActivity.this, "短信验证码发送成功，请注意查收");
+				handler.sendEmptyMessage(1);
+				get_sms_code.setClickable(false);
+			}
+
+			@Override
+			protected String doExecute() throws ZYException, BizFailure {
+				return InvestmentBiz
+						.getVertifyCodeForModifyPhone(investmentDetailModel
+								.getPhone());// 传递电话号码
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				if (!StringUtil.isEmpty(error)) {
+					AlertUtil.t(InvestmentDetailTwoActivity.this, error);
+				}
+
+			}
+		};
+		// if (isFirst) {
+		// getVertifyCodeForModifyPhone.setWaitingView(getWaitingView());
+		// }
+
+		getVertifyCodeForModifyPhone.execute();
+	}
+
+	/**
+	 * 获取收益接口
+	 */
+	private BizDataAsyncTask<String> getInCome;
+
+	private void getInComeData(final String ticket, final boolean isFirst) {
+		getInCome = new BizDataAsyncTask<String>() {
+
+			@Override
+			protected void onExecuteSucceeded(String result) {
+				my_income.setText(result);
+				if (ticket_Models == null) {
+					//ticket_Models = null;
+					layout_Ticket2.setVisibility(View.GONE);
+					layout_Ticket1.setVisibility(View.VISIBLE);
+				}
+				if (Red_Models == null) {
+					//Red_Models = null;
+					layout_Red2.setVisibility(View.GONE);
+					layout_Red1.setVisibility(View.VISIBLE);
+				}
+			}
+
+			@Override
+			protected String doExecute() throws ZYException, BizFailure {
+				return InvestmentBiz.getInCome(productId, investment_Min_Money
+						.getText().toString().trim(), ticket);
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				my_income.setText("0.0");
+				Red_Models = null;
+				layout_Red2.setVisibility(View.GONE);
+				layout_Red1.setVisibility(View.VISIBLE);
+				ticket_Models = null;
+				layout_Ticket2.setVisibility(View.GONE);
+				layout_Ticket1.setVisibility(View.VISIBLE);
+				if (!StringUtil.isEmpty(error)) {
+					AlertUtil.t(InvestmentDetailTwoActivity.this, error);
+				}
+
+			}
+		};
+		if (isFirst) {
+			getInCome.setWaitingView(getWaitingView());
+		}
+
+		getInCome.execute();
+	}
+
+	/**
+	 * 红包
+	 */
+	private void getRedPacketDialog() {
+		RedSelectDialog dialog = new RedSelectDialog(this, R.style.My_Dialog,
+				investment_Min_Money.getText().toString().trim(), productId,
+				new DialogInterface() {
+
+					@Override
+					public void selectRedPacket(boolean select,
+							RedPacketModel models) {
+						if (select == true) {
+							Red_Models = models;
+							layout_Red2.setVisibility(View.VISIBLE);
+							layout_Red1.setVisibility(View.GONE);
+							my_red_packet.setText("￥" + models.getRed_Money());
+						}
+					}
+
+					@Override
+					public void selectTicket(boolean select, TicketModel models) {
+
+					}
+				});
+		dialog.show();
+	}
+
+	/**
+	 * 加息券
+	 */
+	private void getTicketDialog() {
+		TicketSelectDialog dialog = new TicketSelectDialog(this,
+				R.style.My_Dialog, investment_Min_Money.getText().toString()
+						.trim(), productId, new DialogInterface() {
+
+					@Override
+					public void selectRedPacket(boolean select,
+							RedPacketModel models) {
+					}
+
+					@Override
+					public void selectTicket(boolean select, TicketModel models) {
+						if (select == true) {
+							ticket_Models = models;
+							layout_Ticket2.setVisibility(View.VISIBLE);
+							layout_Ticket1.setVisibility(View.GONE);
+							my_ticket.setText(ticket_Models.getRate() + "%");
+							getInComeData(ticket_Models.getRate(), true);
+						}
+					}
+				});
+		dialog.show();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (handler != null)
+			handler.removeMessages(1);
+	}
+
+	/**
+	 * 立即投资
+	 */
+	private BizDataAsyncTask<String> promptlyInvestment;
+
+	private void promptlyInvestment(final String red, final String redMoney,
+			final String ticket, final String ticketRate) {
+		promptlyInvestment = new BizDataAsyncTask<String>(getWaitingView()) {
+
+			@Override
+			protected void onExecuteSucceeded(String result) {
+				// 投资成功
+				PromptlyInvestmentDialog dialog = new PromptlyInvestmentDialog(
+						InvestmentDetailTwoActivity.this, R.style.My_Dialog,
+						true);
+				dialog.setCancelable(false);
+				dialog.show();
+			}
+
+			@Override
+			protected String doExecute() throws ZYException, BizFailure {
+
+				return InvestmentBiz.promptlyInvestment(red, redMoney, ticket,
+						ticketRate, investment_Min_Money.getText().toString()
+								.trim(), edit_password.getText().toString()
+								.trim(), edit_dx_password.getText().toString()
+								.trim(), productId, edit_sms_code.getText()
+								.toString().trim());// 红包id，红包金额
+													// 加息券id
+													// 加息券利率
+													// 金额,交易密码,定向密码,标的id
+
+			}
+
+			@Override
+			protected void OnExecuteFailed(String error) {
+				// 投资失败
+				if ("投资失败！".equals(error)) {
+					PromptlyInvestmentDialog dialog = new PromptlyInvestmentDialog(
+							InvestmentDetailTwoActivity.this,
+							R.style.My_Dialog, false);
+					dialog.setCancelable(false);
+					dialog.show();
+				} else {
+					if (!StringUtil.isEmpty(error)) {
+						AlertUtil.t(InvestmentDetailTwoActivity.this, error);
+					}
+				}
+			}
+		};
+		// if (isFirst) {
+		// promptlyInvestment.setWaitingView(getWaitingView());
+		// }
+
+		promptlyInvestment.execute();
+	}
+
+}

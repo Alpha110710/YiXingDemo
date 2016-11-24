@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/circle_gray"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_normal_orange" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/ll_transfer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/y10" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/x10"
+                    android:paddingRight="@dimen/x10" >
+
+                    <ImageView
+                        android:id="@+id/iv_transfer_flg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/x5"
+                        android:src="@drawable/transfer_item1" />
+
+                    <TextView
+                        android:id="@+id/tv_transfer_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_marginTop="@dimen/y10"
+                    android:background="@color/circle_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/x10"
+                    android:paddingRight="@dimen/x20" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="转让金额不能少于1000元，请重新输入"
+                        android:textColor="@color/standard_red"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y10" >
+
+                        <TextView
+                            android:id="@+id/render_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginRight="@dimen/x15"
+                            android:layout_marginTop="@dimen/y5"
+                            android:text="转让金额:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/transfer_allmoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/transfer_allmoney"
+                            android:padding="@dimen/y8"
+                            android:text="全额转让"
+                            android:textColor="@color/green" />
+
+                        <TextView
+                            android:id="@+id/render_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginRight="@dimen/x10"
+                            android:layout_marginTop="@dimen/y5"
+                            android:layout_toLeftOf="@id/transfer_allmoney"
+                            android:text="元"
+                            android:textColor="@color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@id/render_unit"
+                            android:layout_toRightOf="@id/render_money"
+                            android:orientation="vertical" >
+
+                            <EditText
+                                android:id="@+id/et_transfer_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/y25"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/edittext_white_background"
+                                android:inputType="number"
+                                android:paddingLeft="@dimen/x5"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_transfer_can"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/y5"
+                                android:gravity="left"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y10"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/x15"
+                            android:text="公允价值:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_transfer_gong_yun_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="@dimen/y10"
+                        android:text="转让金额不能少于1000元，请重新输入"
+                        android:textColor="@color/standard_red"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y10"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/transfer_zrmoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="@dimen/x15"
+                            android:text="折让金额:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="@dimen/x78"
+                            android:text="元"
+                            android:textColor="@color/black" />
+
+                        <EditText
+                            android:id="@+id/et_transfer_discount_amont"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/y25"
+                            android:layout_toLeftOf="@id/money"
+                            android:layout_toRightOf="@id/transfer_zrmoney"
+                            android:background="@drawable/edittext_white_background"
+                            android:inputType="number"
+                            android:paddingLeft="@dimen/x5"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y10"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/x15"
+                            android:text="折让比例:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_transfer_discount_proporty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y10"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/x15"
+                            android:text="转让手续费:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_transfer_counter_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/y10"
+                        android:layout_marginTop="@dimen/y10"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/x15"
+                            android:text="实收转让金:"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_transfer_amont_actual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/y10"
+                android:layout_marginTop="@dimen/y10"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/x10" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y5"
+                    android:padding="@dimen/x5"
+                    android:text="债权转让说明"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+
+                <TextView
+                    android:id="@+id/tv_transfer_explain1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/x5"
+                    android:text="1.债权转让需缴纳2%的手续费，即手续费=转让金额*2%"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_transfer_explain2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y5"
+                    android:paddingLeft="@dimen/x5"
+                    android:text="2.债权转让筹款期限为24小时，筹款完成即转让成功，24小时后仍未筹款完成即转让失败"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_transfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/shape_orange_large_round"
+                android:text="确认转让"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

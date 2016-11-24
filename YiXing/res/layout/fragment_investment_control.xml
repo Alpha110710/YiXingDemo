@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white" 
+            android:padding="@dimen/x10" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/y5"
+                android:text="担保措施"
+                android:textColor="@color/title_color_orange"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/y5"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="担保方:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/guarantor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/y5"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="担保描述:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                     android:id="@+id/guarantor_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y10"
+                android:layout_marginBottom="@dimen/y5"
+                android:text="担保附件"
+                android:textColor="@color/title_color_orange"
+                android:textSize="16sp" />
+
+            <GridView
+                android:id="@+id/gridview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y10"
+                android:gravity="center"
+                android:horizontalSpacing="@dimen/x5"
+                android:listSelector="@color/white"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:paddingBottom="@dimen/y5"
+                android:paddingTop="@dimen/y5"
+                android:verticalSpacing="@dimen/y5" >
+            </GridView>
+        </LinearLayout>
+
+</LinearLayout>

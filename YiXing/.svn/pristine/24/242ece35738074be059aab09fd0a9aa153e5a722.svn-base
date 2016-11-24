@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translucence"
+    android:orientation="vertical"
+    android:weightSum="5" >
+
+    <include layout="@layout/header_normal_orange" />
+    <!-- 投资详情1 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y10"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账户余额 : "
+                android:textColor="@color/font_black" />
+
+            <TextView
+                android:id="@+id/my_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:text="--"
+                android:textColor="@color/font_black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="元"
+                android:textColor="@color/font_black" />
+
+            <TextView
+                android:id="@+id/pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_blue_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:paddingTop="@dimen/y5"
+                android:text="充值"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/y5"
+                android:gravity="top"
+                android:text="投资金额 : "
+                android:textColor="@color/font_black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edit_input_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/y5"
+                    android:layout_marginBottom="@dimen/y2"
+                    android:background="@null"
+                    android:hint="--"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/font_black"
+                    android:textColorHint="@color/font_gray"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+
+                <TextView
+                    android:id="@+id/investment_max_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textSize="12sp"
+                    android:textColor="@color/font_gray" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                  android:layout_marginTop="@dimen/y5"
+                android:text="元"
+                android:textColor="@color/font_black" />
+
+            <TextView
+                android:id="@+id/all_Investment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_marginTop="@dimen/y2"
+                android:background="@drawable/shape_blue_white_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x20"
+                android:paddingRight="@dimen/x20"
+                android:paddingTop="@dimen/y5"
+                android:text="全投"
+                android:textColor="@color/title_color_blue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="我的红包 :　"
+                android:textColor="@color/font_black" />
+
+            <LinearLayout
+                android:id="@+id/layout_red2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/my_red_packet"
+                    android:layout_width="@dimen/x50"
+                    android:layout_height="@dimen/y20"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@drawable/investment_detail_immediately_one"
+                    android:gravity="bottom|center"
+                    android:text=""
+                    android:textColor="@color/title_color_orange"
+                  />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="选择" />
+
+                <TextView
+                    android:id="@+id/select_red_packet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:text="其他红包"
+                    android:textColor="@color/title_color_orange" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_red1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="您有" />
+
+                <TextView
+                    android:id="@+id/redpacket_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个红包" />
+
+                <TextView
+                    android:id="@+id/redpacket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请选择"
+                    android:textColor="@color/title_color_orange" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x15" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="加息券　 :　"
+                android:textColor="@color/font_black" />
+
+            <LinearLayout
+                android:id="@+id/layout_ticket2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/my_ticket"
+                   android:layout_width="@dimen/x50"
+                    android:layout_height="@dimen/y20"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:background="@drawable/investment_detail_immediately_two"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/title_color_orange"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="选择" />
+
+                <TextView
+                    android:id="@+id/select_my_ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x5"
+                    android:text="其他加息券"
+                    android:textColor="@color/title_color_orange" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ticket1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:text="您有" />
+
+                <TextView
+                    android:id="@+id/ticket_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个加息券" />
+
+                <TextView
+                    android:id="@+id/ticket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请选择"
+                    android:textColor="@color/title_color_orange" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y10"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预计收益 : "
+                android:textColor="@color/font_black" />
+
+            <TextView
+                android:id="@+id/my_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:text="--"
+                android:textColor="@color/font_black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="元"
+                android:textColor="@color/font_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="投资密码 :     "
+                android:textColor="@color/font_black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/y2"
+                    android:paddingBottom="@dimen/y2"
+                    android:background="@null"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:textColor="@color/font_black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x28"
+                android:layout_marginRight="@dimen/x10"
+                android:text="忘记投资密码?"
+                android:textColor="@color/title_color_orange" />
+        </LinearLayout>
+  <LinearLayout 
+      android:id="@+id/investment_password_type"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y10"
+           android:orientation="horizontal"
+           android:visibility="gone">
+           <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定向密码："
+            android:layout_gravity="bottom"
+            android:textColor="@color/font_black"/>
+            <LinearLayout 
+                android:layout_width="@dimen/x120"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:orientation="vertical">
+              <EditText
+                  android:id="@+id/edit_dx_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/x10"
+                    android:paddingTop="@dimen/y2"
+                    android:paddingBottom="@dimen/y2"
+                    android:textColor="@color/font_black"
+                    android:textColorHint="@color/font_gray"
+                     android:maxLength="15"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:background="@null"
+                    android:textSize="14sp" />
+              <View 
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp"
+                   android:layout_marginLeft="@dimen/x7"
+                  android:background="@color/circle_gray"/>
+              </LinearLayout>
+           
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x15"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="短信验证码 : "
+                android:textColor="@color/font_black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edit_sms_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/y2"
+                    android:paddingBottom="@dimen/y2"
+                    android:background="@null"
+                     android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="@color/font_black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/circle_gray" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/get_sms_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginRight="@dimen/x10"
+                android:background="@drawable/shape_orange_white_large_round"
+                android:paddingBottom="@dimen/y5"
+                android:paddingLeft="@dimen/x5"
+                android:paddingRight="@dimen/x5"
+                android:paddingTop="@dimen/y5"
+                android:text="获取短信验证码"
+                android:textColor="@color/title_color_orange" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@drawable/shape_orange_large_round"
+            android:text="立即投资"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+</LinearLayout>

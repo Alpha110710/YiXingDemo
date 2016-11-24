@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!-- 婚姻状况选则popwindow -->
+ <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+         android:layout_margin="@dimen/x10"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+ <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/popwindow_bg"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/btn_yh"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/y10"
+            android:gravity="center"
+            android:text="已婚"
+            />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/circle_gray"/>
+         <TextView
+            android:id="@+id/btn_wh"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/y10"
+            android:gravity="center"
+            android:text="未婚"
+            />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/circle_gray"/>
+         <TextView
+            android:id="@+id/btn_ly"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/y10"
+            android:gravity="center"
+            android:text="离异"
+             />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/circle_gray"/>
+         <TextView
+            android:id="@+id/btn_so"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/y10"
+            android:gravity="center"
+            android:text="丧偶"
+            />
+</LinearLayout>
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/y10"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_marginBottom="@dimen/y10"
+            android:gravity="center"
+            android:text="取消"
+            android:background="@drawable/popwindow_bg"
+           android:textColor="@color/blue" />
+    </LinearLayout>
+</RelativeLayout>
